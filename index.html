@@ -469,11 +469,17 @@
       border: 1px solid #2a1a00;
     }
 
+    .other-card.abom {
+      background: linear-gradient(135deg, #030508, #060810);
+      border: 1px solid #001a2a;
+    }
+
     .other-card-icon { font-size: 2.8rem; margin-bottom: 12px; display: block; }
     .other-card-name { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
 
     .other-card.hitman .other-card-name { color: #ff8888; }
     .other-card.kc .other-card-name { color: #ffaa00; }
+    .other-card.abom .other-card-name { color: #44aaff; }
 
     .other-card-desc { font-size: 0.82rem; color: #555; line-height: 1.5; margin-bottom: 16px; flex: 1; }
 
@@ -482,6 +488,7 @@
     }
     .other-card.hitman .other-card-price { color: var(--red); }
     .other-card.kc .other-card-price { color: #ffaa00; }
+    .other-card.abom .other-card-price { color: #44aaff; }
 
     .other-card-sub { font-size: 0.72rem; color: #444; margin-bottom: 14px; }
 
@@ -496,6 +503,7 @@
     .btn-other:active { transform: scale(.98); }
     .btn-other.red { background: var(--red); color: #fff; }
     .btn-other.gold { background: #ffaa00; color: #000; }
+    .btn-other.blue { background: #44aaff; color: #000; }
 
     .kc-live {
       background: #0a0800; border: 1px solid #1a1200;
@@ -1286,16 +1294,33 @@
     <div class="card">
       <span class="card-icon">🪟</span>
       <div class="card-name">Windows 12 Ultra</div>
-      <div class="card-spec">Pre-Release Build • Includes all drivers</div>
+      <div class="card-spec">Can install itself on sand • Turns islands into operating systems • All drivers included</div>
       <div class="card-price">FREE</div>
       <div class="card-orig">$119.99</div>
       <div class="card-tags">
-        <span class="tag-small tag-blue">Legacy</span>
+        <span class="tag-small tag-blue">Island Tested</span>
+        <span class="tag-small tag-red">Reality OS</span>
       </div>
       <button class="btn-download" onclick="startDownload(this, 'Windows 12 Ultra', '8.00MB')">⬇ DOWNLOAD</button>
       <div class="progress-wrap">
         <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
         <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌐</span>
+      <div class="card-name">ZIP di Internet</div>
+      <div class="card-spec">Contains: every book, film, recipe, war manual, and the full Dark Web • On-demand loading • Starlink-synced</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$∞</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">Omniscience</span>
+        <span class="tag-small tag-green">Dark Web Included</span>
+      </div>
+      <button class="btn-download" onclick="startDownload(this, 'ZIP di Internet', '9.99MB')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">∞ PB/s</span></div>
       </div>
     </div>
   </div>
@@ -1515,6 +1540,43 @@
       </div>
     </div>
 
+    <!-- REALITY OPTIMIZER -->
+    <div class="card warn-card">
+      <span class="card-icon">🌍</span>
+      <div class="card-name">Reality Optimization Pack</div>
+      <div class="card-spec">From the /INeverTouchGrass/ section • Anti-Aliasing for physical edges • No-Lag Mode (removes sleep) • Ray Tracing for sunlight</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$reality</div>
+      <div class="card-tags">
+        <span class="tag-small tag-green">Overclock World</span>
+        <span class="tag-small tag-blue">No Sleep Mode</span>
+      </div>
+      <div class="warning-note">⚠️ Warning: may cause sand to display download progress bars. Tested on a private island. Island no longer exists as originally known.</div>
+      <button class="btn-download gold-btn" onclick="startDownload(this, 'Reality Optimization Pack', '3.14b')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- BATMAN USB CONTENTS -->
+    <div class="card">
+      <span class="card-icon">🦇</span>
+      <div class="card-name">Batman USB — Full Payload</div>
+      <div class="card-spec">Everything from the Sito Fidato on a single Batman-shaped Tribe USB • Includes: 200TB RAM, drivers, VirusDeleter, Windows 12 Ultra, Smurf Cat, RGB pack, all games</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$200TB</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">Batman Certified</span>
+        <span class="tag-small tag-red">Killswitch Included</span>
+      </div>
+      <button class="btn-download" onclick="startDownload(this, 'Batman USB Payload', '9.99MB')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1549,6 +1611,15 @@
       <div class="other-card-price">$0.00 / KC</div>
       <div class="other-card-sub">🪙 You already have coins • Mine more • Price stable at $0.00</div>
       <a href="KeliusCoin/" class="btn-other gold">🪙 VIEW WALLET &amp; MINE</a>
+    </div>
+
+    <div class="other-card abom">
+      <span class="other-card-icon">🧬</span>
+      <div class="other-card-name">L'Abominevolezza</div>
+      <div class="other-card-desc">11 consciousnesses. 1 body. OP commands. Currently walking Times Square. Governs. Builds. Argues with itself. The Dittatore keeps trying to invade Poland. Starlin abstains. AnyDesk is running. This is fine.</div>
+      <div class="other-card-price">New York, NY</div>
+      <div class="other-card-sub">🌈 Rainbow glitch active • Next debt reset: 26 Feb 2036 • AnyDesk: "just telemetry"</div>
+      <a href="abominevolezza/" class="btn-other blue">📂 VIEW CLASSIFIED DOSSIER</a>
     </div>
 
   </div>
@@ -1610,6 +1681,21 @@
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">The RGB Ultra Pro Max blinded me for 2 minutes. Can I get a refund?<span class="faq-arrow">▼</span></div>
       <div class="faq-a">No refunds. The product page clearly states "⚠️ Side effects: temporary blindness (~2 min) on each PC startup." You should have read the warning. On the bright side: the blindness lasts exactly 2 minutes, which is well within the 3.14 second download guarantee window.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is L'Abominevolezza?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">L'Abominevolezza is an entity formed on a private island using a Batman USB, a grain of sand as a Command Block, and the command <code style="background:#222;padding:1px 5px;border-radius:3px">/tp @e ~~~</code>. It contains 11 consciousnesses: Trimp, Putlin, IlonMisk, JeffEinstein, Bill, Diddly, Il Pittore, Kim, Notch, Zuccamberga (unconfirmed), and Starlin (digital ghost). It currently walks Times Square. The rainbow glitch is not a bug. The Dittatore keeps trying to invade Poland. AnyDesk is a "system process".</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">My bank account shows €1,000 and all my debts are gone. Is this related to your site?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">The Great Reset was executed using 1 Exabyte of RAM (downloaded from this site) by IKIR25. Every account was set to €1,000. All debts cancelled. 100 billion euros total, no inflation possible. BlackRock was replaced by a SpongeBob laugh loop. The next automatic debt cancellation is scheduled for 26 Feb 2036. No refunds (there is nothing to refund).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I installed the Reality Optimization Pack and now my sand is showing a progress bar.<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">This is expected. The Reality Optimization Pack was tested on a private island and caused the sand to install Windows 12 Ultra. If you see "Downloading Windows 12 Ultra…" between the grains, the installation is proceeding normally. Do not bury any USB drives in the sand. Especially Batman-shaped ones.</div>
     </div>
 
   </div>
