@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virus Deletion Certificate — DownloadBetterPerformanceForFree</title>
+  <style>
+    :root { --green:#00ff88; --dark:#0a0a0a; --card:#111; --gold:#ffd700; --red:#ff4444; --blue:#4488ff; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--dark); color:#e0e0e0; font-family:'Segoe UI',sans-serif; min-height:100vh; }
+
+    header {
+      background:linear-gradient(135deg,#001a00,#0a1a0a);
+      border-bottom:2px solid var(--green);
+      padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    }
+    .logo { font-size:1.1rem; font-weight:900; color:var(--green); text-shadow:0 0 10px var(--green); }
+    .logo span { color:#fff; }
+    .back-link { font-size:0.82rem; color:#555; text-decoration:none; transition:color .15s; }
+    .back-link:hover { color:var(--green); }
+
+    .hero { text-align:center; padding:48px 24px 32px; background:radial-gradient(ellipse at top,#1a0000 0%,transparent 70%); }
+    .hero h1 { font-size:clamp(1.8rem,5vw,3rem); font-weight:900; color:#fff; margin-bottom:8px; }
+    .hero h1 span { color:var(--red); text-shadow:0 0 20px var(--red); }
+    .hero p { color:#666; font-size:0.88rem; max-width:480px; margin:10px auto 0; line-height:1.6; }
+
+    .wrap { max-width:720px; margin:0 auto; padding:32px 24px 60px; }
+
+    /* GENERATOR FORM */
+    .gen-card {
+      background:#0d0d0d; border:1px solid #1e1e1e; border-radius:14px; padding:28px;
+      margin-bottom:32px;
+    }
+    .gen-card h2 { font-size:1rem; font-weight:800; color:#fff; margin-bottom:18px; }
+
+    .form-row { margin-bottom:16px; }
+    .form-row label { display:block; font-size:0.75rem; color:#555; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+    .form-row input, .form-row select {
+      width:100%; background:#0a0a0a; border:1px solid #222; border-radius:8px;
+      color:#ddd; font-size:0.9rem; padding:10px 14px; font-family:inherit; outline:none;
+      transition:border-color .15s;
+    }
+    .form-row input:focus, .form-row select:focus { border-color:var(--red); }
+    .form-row select option { background:#111; }
+
+    .btn-generate {
+      width:100%; padding:12px; background:var(--red); color:#fff; font-weight:900;
+      font-size:0.95rem; border:none; border-radius:8px; cursor:pointer;
+      text-transform:uppercase; letter-spacing:.5px; transition:opacity .15s, transform .1s;
+    }
+    .btn-generate:hover { opacity:.85; }
+    .btn-generate:active { transform:scale(.98); }
+
+    /* CERTIFICATE */
+    #certOutput { display:none; margin-bottom:32px; }
+    #certOutput.show { display:block; }
+
+    /* SCAN ANIMATION */
+    .scan-wrap { display:none; margin-bottom:24px; }
+    .scan-wrap.show { display:block; }
+    .scan-bar-bg { background:#1a0000; border-radius:4px; height:6px; overflow:hidden; margin-bottom:6px; }
+    .scan-bar-fill { height:100%; background:var(--red); border-radius:4px; width:0%; transition:width .1s linear; box-shadow:0 0 8px var(--red); }
+    .scan-text { font-size:0.72rem; color:#666; display:flex; justify-content:space-between; }
+    .scan-text .t-red { color:var(--red); }
+
+    .cert {
+      background: linear-gradient(135deg,#0a0007,#07000a);
+      border: 2px solid var(--red);
+      border-radius: 18px;
+      padding: 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(255,68,68,0.08);
+    }
+    .cert::before {
+      content:'DELETED';
+      position:absolute; font-size:12rem; font-weight:900;
+      color:rgba(255,68,68,0.025); top:10px; left:50%; transform:translateX(-50%);
+      pointer-events:none; user-select:none;
+    }
+
+    .cert-logo { font-size:3.5rem; margin-bottom:12px; }
+    .cert-title { font-size:1.6rem; font-weight:900; color:var(--red); text-shadow:0 0 15px var(--red); margin-bottom:4px; }
+    .cert-sub { font-size:0.82rem; color:#555; margin-bottom:24px; }
+
+    .cert-body {
+      background:#050505; border:1px solid #1a0000; border-radius:10px;
+      padding:20px 24px; margin-bottom:20px; text-align:left;
+    }
+    .cert-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #110000; font-size:0.85rem; }
+    .cert-row:last-child { border-bottom:none; }
+    .cert-row .label { color:#555; }
+    .cert-row .value { color:#ccc; font-weight:700; text-align:right; }
+    .cert-row .value.red { color:var(--red); }
+    .cert-row .value.green { color:var(--green); }
+
+    .cert-stamp {
+      width:80px; height:80px; border-radius:50%;
+      border:3px solid var(--green); margin:16px auto;
+      display:flex; align-items:center; justify-content:center;
+      font-size:2.2rem; background:#071407;
+      box-shadow:0 0 20px rgba(0,255,136,0.15);
+    }
+
+    .cert-footer-text { font-size:0.72rem; color:#333; margin-top:12px; line-height:1.7; }
+    .cert-id-text { font-family:monospace; font-size:0.65rem; color:#222; margin-top:8px; }
+
+    .btn-print {
+      width:100%; padding:11px; background:#0d0d0d; border:1px solid #333;
+      color:#888; font-weight:700; font-size:0.85rem; border-radius:8px;
+      cursor:pointer; transition:border-color .15s, color .15s; text-transform:uppercase; letter-spacing:.5px;
+      margin-top:14px;
+    }
+    .btn-print:hover { border-color:var(--green); color:var(--green); }
+
+    /* VIRUS LIST */
+    .virus-section { margin-bottom:32px; }
+    .virus-section h2 { font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:14px; }
+    .virus-list { display:flex; flex-direction:column; gap:10px; }
+    .virus-item {
+      background:#0d0d0d; border:1px solid #1a0808; border-radius:10px;
+      padding:14px 18px; display:flex; align-items:center; gap:14px;
+    }
+    .virus-icon { font-size:1.4rem; flex-shrink:0; }
+    .virus-name { font-size:0.85rem; font-weight:700; color:#cc4444; flex:1; }
+    .virus-desc { font-size:0.72rem; color:#444; }
+    .virus-status { font-size:0.72rem; font-weight:700; color:var(--green); white-space:nowrap; }
+
+    footer { background:#050505; border-top:1px solid #111; padding:20px 24px; text-align:center; }
+    footer p { font-size:0.72rem; color:#333; }
+    footer a { color:var(--green); text-decoration:none; }
+
+    @media print {
+      header, .gen-card, .virus-section, footer, .btn-print, .hero { display:none !important; }
+      body { background:#fff; color:#000; }
+      .cert { border-color:#000; background:#fff; box-shadow:none; }
+      .cert-title { color:#cc0000; text-shadow:none; }
+      .cert-body { border-color:#ccc; background:#f9f9f9; }
+      .cert-row .label { color:#666; }
+      .cert-row .value { color:#000; }
+      .cert-row .value.red { color:#cc0000; }
+      .cert-row .value.green { color:#006600; }
+      .cert-stamp { border-color:#006600; background:#f0fff0; }
+      .cert-footer-text, .cert-id-text { color:#aaa; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Download<span>Better</span>Performance<span>ForFree</span></div>
+  <a class="back-link" href="../../">← Back to Downloads</a>
+</header>
+
+<div class="hero">
+  <h1>Virus Deletion <span>Certificate</span></h1>
+  <p>Generate your official certificate proving that VirusDeleter Extreme 6.2 scanned and cleaned your PC.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- GENERATOR -->
+  <div class="gen-card">
+    <h2>🔍 Generate Your Certificate</h2>
+
+    <div class="form-row">
+      <label>Your Name / PC Name</label>
+      <input type="text" id="certName" placeholder="e.g. IKIR25, My Gaming PC..." maxlength="40" />
+    </div>
+
+    <div class="form-row">
+      <label>Operating System</label>
+      <select id="certOS">
+        <option>Windows 13 Ultimate (Downloaded)</option>
+        <option>Windows 12 Ultra (Downloaded)</option>
+        <option>Windows 11 Home (Original)</option>
+        <option>KimOS Supreme Edition</option>
+        <option>TrimpOS Gold (Make PC Great Again)</option>
+        <option>Linux (sus)</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Scan Type</label>
+      <select id="certScan">
+        <option>Full Scan (π minutes)</option>
+        <option>Quick Scan (3.14 seconds)</option>
+        <option>Deep Quantum Scan (−274K mode)</option>
+        <option>LAN Party Emergency Scan</option>
+      </select>
+    </div>
+
+    <button class="btn-generate" onclick="generateCert()">🛡️ SCAN &amp; GENERATE CERTIFICATE</button>
+  </div>
+
+  <!-- SCAN ANIMATION -->
+  <div class="scan-wrap" id="scanWrap">
+    <div class="scan-bar-bg"><div class="scan-bar-fill" id="scanFill"></div></div>
+    <div class="scan-text"><span id="scanStatus">Scanning...</span><span class="t-red" id="scanFound">Found: 0 viruses</span></div>
+  </div>
+
+  <!-- CERTIFICATE OUTPUT -->
+  <div id="certOutput">
+    <div class="cert" id="certDoc">
+      <div class="cert-logo">🛡️</div>
+      <div class="cert-title">VIRUS DELETION CERTIFICATE</div>
+      <div class="cert-sub">Issued by VirusDeleter Security Extreme 6.2 | Powered by π</div>
+
+      <div class="cert-body">
+        <div class="cert-row"><span class="label">Certificate Holder</span><span class="value" id="outName">—</span></div>
+        <div class="cert-row"><span class="label">Operating System</span><span class="value" id="outOS">—</span></div>
+        <div class="cert-row"><span class="label">Scan Type</span><span class="value" id="outScan">—</span></div>
+        <div class="cert-row"><span class="label">Date of Scan</span><span class="value" id="outDate">—</span></div>
+        <div class="cert-row"><span class="label">Viruses Found</span><span class="value red" id="outFound">—</span></div>
+        <div class="cert-row"><span class="label">Viruses Deleted</span><span class="value green" id="outDeleted">—</span></div>
+        <div class="cert-row"><span class="label">Remaining Viruses</span><span class="value green">0 (all deleted)</span></div>
+        <div class="cert-row"><span class="label">PC Status</span><span class="value green" id="outStatus">—</span></div>
+      </div>
+
+      <div class="cert-stamp">✓</div>
+
+      <div class="cert-footer-text">
+        This certificate confirms that the PC listed above has been scanned and fully cleaned by VirusDeleter Extreme 6.2.<br>
+        VirusDeleter Extreme 6.2 guarantees the detection of exactly 3.14 viruses per scan.<br>
+        The 0.14 fractional virus has been neutralized. The remaining 3 integer viruses were also deleted as a bonus.
+      </div>
+      <div class="cert-id-text" id="outCertId">CERT-ID: —</div>
+    </div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ PRINT / SAVE AS PDF</button>
+  </div>
+
+  <!-- KNOWN VIRUSES -->
+  <div class="virus-section">
+    <h2>🦠 Viruses Deleted By Our Software</h2>
+    <div class="virus-list">
+
+      <div class="virus-item">
+        <span class="virus-icon">🦠</span>
+        <div>
+          <div class="virus-name">Win32.FakeRAM.200TB</div>
+          <div class="virus-desc">Modifies registry to display fake RAM amounts. Makes Windows show 200 TB installed.</div>
+        </div>
+        <div class="virus-status">✓ DELETED</div>
+      </div>
+
+      <div class="virus-item">
+        <span class="virus-icon">🦠</span>
+        <div>
+          <div class="virus-name">GPU.Phantom.RTX5090</div>
+          <div class="virus-desc">Convinces Device Manager that 2× RTX 5090 are installed. GTX 1060 refuses to cooperate.</div>
+        </div>
+        <div class="virus-status">✓ DELETED</div>
+      </div>
+
+      <div class="virus-item">
+        <span class="virus-icon">🌡️</span>
+        <div>
+          <div class="virus-name">Thermal.Kelius.NegativeCold</div>
+          <div class="virus-desc">Forces temperature sensors to read −274 K. Below absolute zero. Physics complains.</div>
+        </div>
+        <div class="virus-status">✓ DELETED</div>
+      </div>
+
+      <div class="virus-item" style="border-color:#1a1400">
+        <span class="virus-icon">🔢</span>
+        <div>
+          <div class="virus-name">Pi.Fractional.0.14</div>
+          <div class="virus-desc" style="color:#555">The 0.14 part of the 3.14 viruses. Partial virus. The most dangerous part.</div>
+        </div>
+        <div class="virus-status" style="color:var(--gold)">✓ DELETED (fractional)</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><a href="../../">DownloadBetterPerformanceForFree</a> — DeletedVirus/Certificate | VirusDeleter Extreme 6.2 | Always finds 3.14 viruses</p>
+</footer>
+
+<script>
+  function generateCert() {
+    const name = document.getElementById('certName').value.trim() || 'Anonymous PC';
+    const os = document.getElementById('certOS').value;
+    const scan = document.getElementById('certScan').value;
+
+    const scanWrap = document.getElementById('scanWrap');
+    const scanFill = document.getElementById('scanFill');
+    const scanStatus = document.getElementById('scanStatus');
+    const scanFound = document.getElementById('scanFound');
+
+    scanWrap.classList.add('show');
+    document.getElementById('certOutput').classList.remove('show');
+    scanFill.style.width = '0%';
+
+    const msgs = [
+      'Initializing VirusDeleter 6.2...',
+      'Scanning system registry...',
+      'Checking for fake RAM entries...',
+      'Analyzing GPU drivers...',
+      'Detecting Pi-based malware...',
+      'Found 3 viruses...',
+      'Found 3.14 viruses...',
+      'Deleting 3.14 viruses...',
+      'Deleting 0.14 fractional virus...',
+      'Scan complete.'
+    ];
+
+    let pct = 0;
+    let msgIdx = 0;
+
+    const interval = setInterval(() => {
+      pct += Math.random() * 12 + 6;
+      if (pct >= 100) {
+        pct = 100;
+        clearInterval(interval);
+        scanFill.style.width = '100%';
+        scanStatus.textContent = 'Scan complete.';
+        scanFound.textContent = 'Found: 3.14 viruses → DELETED';
+        setTimeout(showCert, 600);
+      } else {
+        scanFill.style.width = pct + '%';
+        const idx = Math.min(Math.floor(pct / 11), msgs.length - 1);
+        scanStatus.textContent = msgs[idx];
+        if (pct > 60) scanFound.textContent = 'Found: 3.14 viruses';
+        else if (pct > 40) scanFound.textContent = 'Found: 3 viruses';
+        else scanFound.textContent = 'Found: ' + Math.floor(pct / 20) + ' viruses';
+      }
+    }, 120);
+
+    function showCert() {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-GB');
+      const certId = 'VD62-' + Math.floor(Math.random()*9000+1000) + '-3.14-' + now.getFullYear();
+
+      document.getElementById('outName').textContent = name;
+      document.getElementById('outOS').textContent = os;
+      document.getElementById('outScan').textContent = scan;
+      document.getElementById('outDate').textContent = dateStr;
+      document.getElementById('outFound').textContent = '3.14 viruses';
+      document.getElementById('outDeleted').textContent = '3.14 viruses (100%)';
+      document.getElementById('outStatus').textContent = '✓ CLEAN (probably)';
+      document.getElementById('outCertId').textContent = 'CERT-ID: ' + certId;
+
+      document.getElementById('certOutput').classList.add('show');
+      document.getElementById('certOutput').scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  }
+</script>
+
+</body>
+</html>
