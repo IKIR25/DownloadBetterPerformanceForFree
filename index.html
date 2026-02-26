@@ -1440,7 +1440,7 @@
         <span class="tag-small tag-green">π Certified</span>
         <span class="tag-small tag-blue">Score: 6.28</span>
       </div>
-      <button class="btn-download" onclick="startDownload(this, 'BenchmarkUltra π', '6.28MB')">⬇ DOWNLOAD</button>
+      <button class="btn-download" onclick="startDownload(this, 'BenchmarkUltra π', '57MB', 'apps/BenchmarkUltra/BenchmarkUltra.exe')">⬇ DOWNLOAD</button>
       <div class="progress-wrap">
         <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
         <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
@@ -1943,7 +1943,7 @@
 <div id="toast"></div>
 
 <script>
-  function startDownload(btn, name, size) {
+  function startDownload(btn, name, size, realUrl) {
     const card = btn.closest('.card, .featured-card');
     const progressWrap = card ? card.querySelector('.progress-wrap') : null;
 
@@ -1979,6 +1979,14 @@
           btn.style.color = 'var(--green)';
           btn.style.border = '1px solid var(--green)';
           showToast('✓ ' + name + ' installed! (' + size + ')');
+          if (realUrl) {
+            const a = document.createElement('a');
+            a.href = realUrl;
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
         } else {
           fill.style.width = pct + '%';
           status.textContent = msgs[Math.floor(pct / 15)] || 'Downloading...';
