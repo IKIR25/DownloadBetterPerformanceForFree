@@ -678,6 +678,164 @@
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
+
+    /* SOFTWARE CARDS — warning stripe */
+    .card.warn-card::before {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .card.warn-card:hover { border-color: var(--gold); }
+    .card.warn-card:hover::before { opacity: 1; }
+
+    .warning-note {
+      background: #1a1000;
+      border: 1px solid #3a2800;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 0.72rem;
+      color: #cc8800;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .btn-download.gold-btn {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* CUSTOM PACKAGE */
+    .custom-box {
+      background: #0a0f0a;
+      border: 2px solid #1e3a1e;
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .custom-box:hover { border-color: var(--green); }
+
+    .pkg-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .pkg-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+
+    .pkg-item:hover { border-color: #333; background: #161616; }
+    .pkg-item.selected { border-color: var(--green); background: #071407; }
+
+    .pkg-item input[type="checkbox"] {
+      accent-color: var(--green);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .pkg-item-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ccc;
+      flex: 1;
+    }
+
+    .pkg-item-price {
+      font-size: 0.75rem;
+      color: #444;
+      text-decoration: line-through;
+    }
+
+    .pkg-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .pkg-info { font-size: 0.9rem; color: #666; }
+    .pkg-info strong { color: var(--green); font-size: 1.1rem; }
+    .pkg-savings { font-size: 0.8rem; color: #555; margin-top: 2px; }
+    .pkg-savings span { color: var(--gold); }
+
+    .btn-pkg {
+      padding: 13px 32px;
+      background: var(--green);
+      color: #000;
+      font-weight: 900;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn-pkg:hover { opacity: 0.9; }
+    .btn-pkg:active { transform: scale(0.98); }
+    .btn-pkg:disabled { background: #222; color: #555; cursor: default; }
+
+    .pkg-progress {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .pkg-progress.show { display: block; }
+
+    .pkg-progress-bar-bg {
+      background: #1a1a1a;
+      border-radius: 6px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .pkg-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), #00ffcc);
+      border-radius: 6px;
+      width: 0%;
+      transition: width 0.15s linear;
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .pkg-progress-text {
+      font-size: 0.78rem;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pkg-log {
+      margin-top: 12px;
+      background: #050505;
+      border: 1px solid #111;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #444;
+      max-height: 90px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .pkg-log.show { display: block; }
+    .pkg-log .log-line { color: var(--green); line-height: 1.8; }
   </style>
 </head>
 <body>
@@ -707,6 +865,8 @@
   <a href="#storage">Storage</a>
   <a href="#os">OS</a>
   <a href="#cooling">Cooling</a>
+  <a href="#software">Software</a>
+  <a href="#custom">⭐ Custom Package</a>
   <a href="#reviews">Reviews</a>
 </nav>
 
@@ -923,15 +1083,16 @@
 
     <div class="card">
       <span class="card-icon">⚙️</span>
-      <div class="card-name">Universal CPU Driver</div>
-      <div class="card-spec">Compatible with: Ryzen AND 4070 simultaneously</div>
+      <div class="card-name">Universal GPU Driver — Ryzen 4070</div>
+      <div class="card-spec">Specifically optimized for the exclusive GPU Ryzen 4070 • Universal: compatible with ALL GPUs</div>
       <div class="card-price">FREE</div>
       <div class="card-orig">$0.90</div>
       <div class="card-tags">
         <span class="tag-small tag-blue">Universal</span>
+        <span class="tag-small tag-red">Ryzen 4070</span>
         <span class="tag-small tag-green">LAN Ready</span>
       </div>
-      <button class="btn-download" onclick="startDownload(this, 'Universal Driver', '4.20MB')">⬇ DOWNLOAD</button>
+      <button class="btn-download" onclick="startDownload(this, 'Universal GPU Driver', '4.20MB')">⬇ DOWNLOAD</button>
       <div class="progress-wrap">
         <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
         <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
@@ -1110,6 +1271,281 @@
 
 <hr class="divider" />
 
+<!-- ============ SOFTWARE ============ -->
+<div class="section" id="software">
+  <div class="section-title">
+    💿 Software &amp; Tools
+    <span class="tag">ALL FREE</span>
+  </div>
+  <p class="section-sub">Trusted utilities, security tools, and performance enhancers. All from our verified partner developers.</p>
+  <div class="grid">
+
+    <!-- RGB -->
+    <div class="card warn-card">
+      <span class="card-icon">🌈</span>
+      <div class="card-name">RGB Ultra Pro Max</div>
+      <div class="card-spec">Enables full RGB lighting on any device • Intensity: Maximum</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$24.99</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">RGB</span>
+        <span class="tag-small tag-blue">Pro Max</span>
+      </div>
+      <div class="warning-note">⚠️ Side effects: temporary blindness (~2 min) on each PC startup. Wear sunglasses.</div>
+      <button class="btn-download gold-btn" onclick="startDownload(this, 'RGB Ultra Pro Max', '3.14b')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- BENCHMARK -->
+    <div class="card">
+      <span class="card-icon">📊</span>
+      <div class="card-name">BenchmarkUltra π Edition</div>
+      <div class="card-spec">Industry-leading benchmark suite • Result guaranteed: 6.28 pts</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$59.99</div>
+      <div class="card-tags">
+        <span class="tag-small tag-green">π Certified</span>
+        <span class="tag-small tag-blue">Score: 6.28</span>
+      </div>
+      <button class="btn-download" onclick="startDownload(this, 'BenchmarkUltra π', '6.28MB')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- VIRUSDELETER already in cooling but also listed here for visibility -->
+    <div class="card">
+      <span class="card-icon">🛡️</span>
+      <div class="card-name">VirusDeleter Security Extreme 6.2</div>
+      <div class="card-spec">Detects exactly 3.14 viruses per scan • Always</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$89.99/yr</div>
+      <div class="card-tags">
+        <span class="tag-small tag-green">No Real Threats</span>
+        <span class="tag-small tag-gold">π Scan Engine</span>
+      </div>
+      <button class="btn-download" onclick="startDownload(this, 'VirusDeleter 6.2', '6.28MB')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- SOUND SYSTEM -->
+    <div class="card">
+      <span class="card-icon">🔊</span>
+      <div class="card-name">SoundSystem 7.1 Surround Real Gold</div>
+      <div class="card-spec">Uses golden ratio φ to emit audio from keyboard keys directly</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$34.99</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">φ Audio</span>
+        <span class="tag-small tag-blue">7.1 Surround</span>
+      </div>
+      <button class="btn-download" onclick="startDownload(this, 'SoundSystem Real Gold', '7.10MB')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- LAN PARTY PACK -->
+    <div class="card">
+      <span class="card-icon">🎮</span>
+      <div class="card-name">LAN Party Driver Pack</div>
+      <div class="card-spec">Universal GPU Driver for Ryzen 4070 • Shared at the legendary unredacted LAN party</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$0.00</div>
+      <div class="card-tags">
+        <span class="tag-small tag-red">⚠ LAN Risk</span>
+        <span class="tag-small tag-blue">Unredacted</span>
+      </div>
+      <div class="warning-note">⚠️ Trimp cancelled the last LAN party immediately after this was distributed. Reason: [REDACTED]</div>
+      <button class="btn-download" onclick="startDownload(this, 'LAN Party Driver Pack', '3.14b')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- WELIVEWELOVEWELIE -->
+    <div class="card warn-card">
+      <span class="card-icon">🐱</span>
+      <div class="card-name">WeLiveWeLoveWeLie v1.0</div>
+      <div class="card-spec">Personal gift from Trimp • Exclusive for IKIR25 &amp; LAN party attendees</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$∞</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">Trimp Certified</span>
+        <span class="tag-small tag-red">We Lie™</span>
+      </div>
+      <div class="warning-note">⚠️ The name says "We Lie". Just so you know.</div>
+      <button class="btn-download gold-btn" onclick="startDownload(this, 'WeLiveWeLoveWeLie', '3.14b')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+    <!-- freeCrYptOMiner -->
+    <div class="card warn-card">
+      <span class="card-icon">⛏️</span>
+      <div class="card-name">freeCrYptOMinerminor2paygood 2</div>
+      <div class="card-spec">Mine KeliusCoin with your GPU • PayGood™ technology</div>
+      <div class="card-price">FREE</div>
+      <div class="card-orig">$0.00</div>
+      <div class="card-tags">
+        <span class="tag-small tag-gold">PayGood™</span>
+        <span class="tag-small tag-red">-9000 FPS Side Effect</span>
+      </div>
+      <div class="warning-note">⚠️ May reduce gaming FPS. The site earns 99%, you get the rest (nothing). GPU will also scream.</div>
+      <button class="btn-download gold-btn" onclick="startDownload(this, 'freeCrYptOMiner 2', '3.14b')">⬇ DOWNLOAD</button>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ============ CUSTOM PACKAGE ============ -->
+<div class="section" id="custom">
+  <div class="section-title">
+    ⭐ Build Your Custom Package
+    <span class="tag">NEW</span>
+  </div>
+  <p class="section-sub">Select everything you want and download it all at once. Mix hardware and software. All free. All legit.</p>
+
+  <div class="custom-box">
+    <div class="pkg-list" id="pkgList">
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="200 TB RAM" data-price="2499999.99" />
+        <span class="pkg-item-name">🧠 200 TB RAM Bundle</span>
+        <span class="pkg-item-price">$2,499,999</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="1 EB RAM" data-price="999999999" />
+        <span class="pkg-item-name">🧠 1 Exabyte RAM Ultimate</span>
+        <span class="pkg-item-price">$∞</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="RTX 5090" data-price="1999.99" />
+        <span class="pkg-item-name">🎮 RTX 5090</span>
+        <span class="pkg-item-price">$1,999</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="RTX 5090 x2" data-price="3999.98" />
+        <span class="pkg-item-name">🎮 RTX 5090 × 2 Bundle</span>
+        <span class="pkg-item-price">$3,999</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="OLED Upgrader" data-price="999.99" />
+        <span class="pkg-item-name">🖥️ OLED Upgrader π Edition</span>
+        <span class="pkg-item-price">$999</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="Ryzen 9 92759X5D" data-price="899.99" />
+        <span class="pkg-item-name">⚙️ Ryzen 9 92759X5D</span>
+        <span class="pkg-item-price">$899</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="Universal GPU Driver" data-price="0.90" />
+        <span class="pkg-item-name">⚙️ Universal GPU Driver — Ryzen 4070</span>
+        <span class="pkg-item-price">$0.90</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="8 TB SSD 2.0" data-price="799.99" />
+        <span class="pkg-item-name">💾 SSD 2.0 — 8 TB</span>
+        <span class="pkg-item-price">$799</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="50,000 PB Storage" data-price="9999999" />
+        <span class="pkg-item-name">💾 50,000 PB Quantum Storage</span>
+        <span class="pkg-item-price">$∞</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="Windows 13 Ultimate" data-price="119.99" />
+        <span class="pkg-item-name">🪟 Windows 13 Ultimate</span>
+        <span class="pkg-item-price">$119</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="Laptop Cooler -50K" data-price="49.99" />
+        <span class="pkg-item-name">❄️ Laptop Cooler −50° Kelius</span>
+        <span class="pkg-item-price">$49</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="FanspeederX200" data-price="29.99" />
+        <span class="pkg-item-name">🚁 FanspeederX200 v3.104</span>
+        <span class="pkg-item-price">$29</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="RGB Ultra Pro Max" data-price="24.99" />
+        <span class="pkg-item-name">🌈 RGB Ultra Pro Max</span>
+        <span class="pkg-item-price">$24</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="BenchmarkUltra π" data-price="59.99" />
+        <span class="pkg-item-name">📊 BenchmarkUltra π Edition</span>
+        <span class="pkg-item-price">$59</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="VirusDeleter 6.2" data-price="89.99" />
+        <span class="pkg-item-name">🛡️ VirusDeleter Extreme 6.2</span>
+        <span class="pkg-item-price">$89</span>
+      </label>
+
+      <label class="pkg-item" onclick="togglePkg(this)">
+        <input type="checkbox" value="SoundSystem Real Gold" data-price="34.99" />
+        <span class="pkg-item-name">🔊 SoundSystem 7.1 Real Gold</span>
+        <span class="pkg-item-price">$34</span>
+      </label>
+
+    </div>
+
+    <div class="pkg-summary">
+      <div>
+        <div class="pkg-info">Selected: <strong id="pkgCount">0</strong> items</div>
+        <div class="pkg-savings">You save: <span id="pkgSavings">$0.00</span> (100% off everything)</div>
+      </div>
+      <button class="btn-pkg" id="pkgBtn" onclick="downloadPackage()" disabled>⬇ DOWNLOAD PACKAGE</button>
+    </div>
+
+    <div class="pkg-progress" id="pkgProgress">
+      <div class="pkg-progress-bar-bg"><div class="pkg-progress-bar-fill" id="pkgFill"></div></div>
+      <div class="pkg-progress-text">
+        <span id="pkgStatus">Preparing package...</span>
+        <span style="color:var(--green)">5 PB/s</span>
+      </div>
+    </div>
+    <div class="pkg-log" id="pkgLog"></div>
+
+  </div>
+</div>
+
+<hr class="divider" />
+
 <!-- ============ REVIEWS ============ -->
 <div class="section" id="reviews">
   <div class="section-title">⭐ User Reviews</div>
@@ -1271,6 +1707,101 @@
       }, 3140);
     }
   }
+
+  // ---- CUSTOM PACKAGE ----
+  function togglePkg(label) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    // The click event fires before the checkbox changes, so we flip manually
+    setTimeout(() => {
+      label.classList.toggle('selected', cb.checked);
+      updatePkgSummary();
+    }, 0);
+  }
+
+  function updatePkgSummary() {
+    const checks = document.querySelectorAll('#pkgList input[type="checkbox"]');
+    let count = 0;
+    let savings = 0;
+    checks.forEach(cb => {
+      if (cb.checked) {
+        count++;
+        const p = parseFloat(cb.dataset.price) || 0;
+        if (isFinite(p)) savings += p;
+      }
+    });
+    document.getElementById('pkgCount').textContent = count;
+    document.getElementById('pkgSavings').textContent = savings > 999999
+      ? '$' + (savings / 1000000).toFixed(1) + 'M+'
+      : '$' + savings.toFixed(2);
+    const btn = document.getElementById('pkgBtn');
+    btn.disabled = count === 0;
+    btn.textContent = count === 0 ? '⬇ DOWNLOAD PACKAGE' : '⬇ DOWNLOAD ' + count + ' ITEMS';
+  }
+
+  function downloadPackage() {
+    const checks = Array.from(document.querySelectorAll('#pkgList input[type="checkbox"]:checked'));
+    if (!checks.length) return;
+
+    const items = checks.map(cb => cb.value);
+    const btn = document.getElementById('pkgBtn');
+    const prog = document.getElementById('pkgProgress');
+    const fill = document.getElementById('pkgFill');
+    const status = document.getElementById('pkgStatus');
+    const log = document.getElementById('pkgLog');
+
+    btn.disabled = true;
+    btn.textContent = '⏳ INSTALLING PACKAGE...';
+    prog.classList.add('show');
+    log.classList.add('show');
+    log.innerHTML = '';
+
+    const total = items.length;
+    let done = 0;
+
+    const installNext = () => {
+      if (done >= total) {
+        fill.style.width = '100%';
+        status.textContent = 'Package complete!';
+        btn.textContent = '✓ ALL ' + total + ' ITEMS INSTALLED';
+        btn.style.background = '#0d2d0d';
+        btn.style.color = 'var(--green)';
+        btn.style.border = '1px solid var(--green)';
+        addLog('✓ Package installation complete. Rebooting reality...');
+        showToast('✓ Package installed: ' + total + ' items!');
+        return;
+      }
+      const name = items[done];
+      addLog('⬇ Installing ' + name + '...');
+      status.textContent = 'Installing: ' + name;
+
+      let pct = (done / total) * 100;
+      const target = ((done + 1) / total) * 100;
+      const step = setInterval(() => {
+        pct += 3;
+        if (pct >= target) {
+          pct = target;
+          clearInterval(step);
+          fill.style.width = pct + '%';
+          addLog('✓ ' + name + ' installed.');
+          done++;
+          setTimeout(installNext, 200);
+        }
+        fill.style.width = pct + '%';
+      }, 80);
+    };
+
+    installNext();
+  }
+
+  function addLog(msg) {
+    const log = document.getElementById('pkgLog');
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.textContent = '> ' + msg;
+    log.appendChild(line);
+    log.scrollTop = log.scrollHeight;
+  }
+  // ---- END CUSTOM PACKAGE ----
 
   function openSecret() {
     document.getElementById('secretModal').classList.add('open');
