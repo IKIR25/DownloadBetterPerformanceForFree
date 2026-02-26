@@ -440,7 +440,98 @@
       letter-spacing: 1px;
     }
 
-    /* SECRET BUTTON (1 pixel) */
+    /* OTHER SERVICES */
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .other-card {
+      border-radius: 14px;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .other-card:hover { transform: translateY(-3px); }
+
+    .other-card.hitman {
+      background: linear-gradient(135deg, #0d0000, #110000);
+      border: 1px solid #2a0000;
+    }
+
+    .other-card.kc {
+      background: linear-gradient(135deg, #0d0a00, #110e00);
+      border: 1px solid #2a1a00;
+    }
+
+    .other-card-icon { font-size: 2.8rem; margin-bottom: 12px; display: block; }
+    .other-card-name { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+
+    .other-card.hitman .other-card-name { color: #ff8888; }
+    .other-card.kc .other-card-name { color: #ffaa00; }
+
+    .other-card-desc { font-size: 0.82rem; color: #555; line-height: 1.5; margin-bottom: 16px; flex: 1; }
+
+    .other-card-price {
+      font-size: 1.6rem; font-weight: 900; margin-bottom: 4px;
+    }
+    .other-card.hitman .other-card-price { color: var(--red); }
+    .other-card.kc .other-card-price { color: #ffaa00; }
+
+    .other-card-sub { font-size: 0.72rem; color: #444; margin-bottom: 14px; }
+
+    .btn-other {
+      padding: 11px; font-weight: 900; font-size: 0.9rem;
+      border: none; border-radius: 8px; cursor: pointer;
+      text-transform: uppercase; letter-spacing: .5px;
+      transition: opacity .15s, transform .1s; text-decoration: none;
+      display: block; text-align: center;
+    }
+    .btn-other:hover { opacity: .85; }
+    .btn-other:active { transform: scale(.98); }
+    .btn-other.red { background: var(--red); color: #fff; }
+    .btn-other.gold { background: #ffaa00; color: #000; }
+
+    .kc-live {
+      background: #0a0800; border: 1px solid #1a1200;
+      border-radius: 8px; padding: 10px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px; font-size: 0.8rem;
+    }
+    .kc-live-label { color: #555; }
+    .kc-live-val { color: #ffaa00; font-weight: 900; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .faq-item {
+      background: #0d0d0d; border: 1px solid #1a1a1a;
+      border-radius: 10px; overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 14px 18px; font-size: 0.9rem; font-weight: 700;
+      color: #ccc; cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center;
+      user-select: none; transition: background .15s;
+    }
+    .faq-q:hover { background: #111; }
+    .faq-arrow { color: var(--green); font-size: 0.8rem; transition: transform .2s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none; padding: 0 18px 16px;
+      font-size: 0.83rem; color: #666; line-height: 1.6;
+      border-top: 1px solid #111;
+    }
+    .faq-item.open .faq-a { display: block; padding-top: 14px; }
+
+    /* SECRET BUTTON (1 pixel) with circle */
     .secret-btn {
       width: 1px;
       height: 1px;
@@ -450,7 +541,18 @@
       position: fixed;
       bottom: 42px;
       right: 42px;
-      opacity: 0.3;
+      opacity: 0.25;
+    }
+
+    .secret-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 255, 136, 0.15);
+      pointer-events: none;
     }
 
     /* MODAL */
@@ -866,8 +968,11 @@
   <a href="#os">OS</a>
   <a href="#cooling">Cooling</a>
   <a href="#software">Software</a>
+  <a href="#other">Other Services</a>
   <a href="#custom">⭐ Custom Package</a>
+  <a href="#faq">FAQ</a>
   <a href="#reviews">Reviews</a>
+  <a href="about/">About</a>
 </nav>
 
 <!-- TICKER -->
@@ -1415,6 +1520,103 @@
 
 <hr class="divider" />
 
+<!-- ============ OTHER SERVICES ============ -->
+<div class="section" id="other">
+  <div class="section-title">
+    🔧 Other Services
+    <span class="tag">EXCLUSIVE</span>
+  </div>
+  <p class="section-sub">Beyond hardware. Our premium service catalog.</p>
+  <div class="other-grid">
+
+    <div class="other-card hitman">
+      <span class="other-card-icon">⚔️</span>
+      <div class="other-card-name">Hitman Service</div>
+      <div class="other-card-desc">Professional digital hitman available for hire. Dispatched in 3.14 business days. Kim has declared this a worldwide danger. Kim is offline.</div>
+      <div class="other-card-price">$0.90</div>
+      <div class="other-card-sub">⚠️ Kim disapproves • Results may vary • Definitely not real</div>
+      <a href="hitman/" class="btn-other red">⚔️ HIRE HITMAN</a>
+    </div>
+
+    <div class="other-card kc">
+      <span class="other-card-icon">🪙</span>
+      <div class="other-card-name">KeliusCoin (KC)</div>
+      <div class="other-card-desc">The world's only sub-zero cryptocurrency. Mine KC with your GPU in π seconds. Price: $0.00. Market cap: $0.00. HODL.</div>
+      <div class="kc-live">
+        <span class="kc-live-label">Your Wallet</span>
+        <span class="kc-live-val" id="kcWalletPreview">Loading...</span>
+      </div>
+      <div class="other-card-price">$0.00 / KC</div>
+      <div class="other-card-sub">🪙 You already have coins • Mine more • Price stable at $0.00</div>
+      <a href="KeliusCoin/" class="btn-other gold">🪙 VIEW WALLET &amp; MINE</a>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ============ FAQ ============ -->
+<div class="section" id="faq">
+  <div class="section-title">❓ FAQ</div>
+  <p class="section-sub">Frequently asked questions. Answers are 100% accurate.</p>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">My PC got slower after downloading. What happened?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Skill issue. Our downloads have been tested and confirmed to work on all PCs that are good enough. If your PC slowed down, it simply wasn't good enough. Solution: download more RAM.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is this real? Can I actually download hardware?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes. Extremely. The site is programmed in PYscript type C+# and HTML (Hi To My Lbrother). Using π-based compression, 1 Exabyte of RAM fits in 9.99 MB. This is real. We have a certificate.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">My PC is at −274 Kelvin and floating. Is this normal?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes, working as intended. The FanspeederX200 v3.104 is listed as having "⚠ Levitation Risk" in its product tags. You accepted this when you clicked download. To land the PC, uninstall FanspeederX200 or open a window.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">The VirusDeleter found exactly 3.14 viruses every time I scan. Is that suspicious?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Your PC simply has exactly 3.14 viruses. This is the global average. The 0.14 fractional virus is the dangerous part — it has been removed. The integer 3 are harmless background viruses that come pre-installed with Windows.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Kim said this site is a worldwide danger. Should I be worried?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Kim is offline. While his statement was technically accurate in the sense that he said it, we cannot verify it at this time. Kim had the site in his favourites before removing it, which proves he used it. IKIR25 has addressed this by using the $0.90 hitman service.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I download hardware I already have installed?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes! It works as a backup. If you already have a GTX 1060, downloading an RTX 5090 will add it on top. Your PC may now have 3 GPUs. This is fine. The extra GPUs are stored in the RAM you also downloaded.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">My benchmark scored 6.28. Is that good?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Excellent score. The global average is 6.28. You are perfectly average in the most perfect way. Note that 6.28 = 2π, which means your PC is operating at exactly 2 full circles of performance.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How much is KeliusCoin worth?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">$0.00. This is not a bug. The price chart is a perfectly flat horizontal line, which financial experts describe as "maximum stability." IlonMisk has invested $44B. This has not changed the price. HODL.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why was the LAN party cancelled?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">The reason is classified. A full document is available to users with 69K resolution and sufficient KeliusCoin holdings. The short answer is: <span style="background:#1a1a1a;color:#1a1a1a;border-radius:3px;padding:0 4px;">REDACTED</span>. The longer answer is also <span style="background:#1a1a1a;color:#1a1a1a;border-radius:3px;padding:0 4px;">REDACTED</span>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">The RGB Ultra Pro Max blinded me for 2 minutes. Can I get a refund?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No refunds. The product page clearly states "⚠️ Side effects: temporary blindness (~2 min) on each PC startup." You should have read the warning. On the bright side: the blindness lasts exactly 2 minutes, which is well within the 3.14 second download guarantee window.</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" />
+
 <!-- ============ CUSTOM PACKAGE ============ -->
 <div class="section" id="custom">
   <div class="section-title">
@@ -1606,6 +1808,24 @@
       <div class="review-badge">✓ Verified Download: Ryzen 9 92759X5D + Universal Driver</div>
     </div>
 
+    <div class="review-card">
+      <div class="review-header">
+        <span class="reviewer">IKIR25</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="review-text">"Used the $0.90 hitman after Kim cancelled the LAN party. Arrived in 3.14 days. Very professional. Also mined 47 KeliusCoin. My wallet is worth $0.00. I have never felt richer."</p>
+      <div class="review-badge">✓ Verified: Hitman Service + 47 KC mined</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <span class="reviewer">IlonMisk</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="review-text">"Moved $44 billion to KeliusCoin. Price remains $0.00. This is called market stability. I am the richest person in the world and also have 3.14 KC. These facts are unrelated."</p>
+      <div class="review-badge">✓ Verified Holder: 3.14 KC | Portfolio value: $0.00</div>
+    </div>
+
   </div>
 </div>
 
@@ -1630,27 +1850,8 @@
   </div>
 </footer>
 
-<!-- SECRET PIXEL BUTTON -->
-<button class="secret-btn" onclick="openSecret()" title=""></button>
-
-<!-- SECRET MODAL -->
-<div class="modal-overlay" id="secretModal">
-  <div class="modal">
-    <h2>🔍 You Found It</h2>
-    <p>
-      You used your 69K resolution to see the 1-pixel secret button.<br>
-      Here is the classified link recovered from the LAN party incident:
-    </p>
-    <div class="url-box">
-      DownloadBetterPerformanceForFree/No_Scam/DeletedVirus/NoAds/Downloaded/we/our/usa/trimp/unredacted/reason/LAN/Party
-    </div>
-    <p style="font-size:0.75rem;color:#555">
-      This link contains sensitive geopolitical information about the cancellation of the LAN party.<br>
-      Kim has been notified. Server temperature: -274 K.
-    </p>
-    <button class="modal-close" onclick="closeSecret()">Close (lose 3.14 FPS)</button>
-  </div>
-</div>
+<!-- SECRET PIXEL BUTTON — requires 69K vision to find -->
+<a class="secret-btn" href="unredacted/reason/LAN/Party/" title=""></a>
 
 <!-- TOAST -->
 <div id="toast"></div>
@@ -1803,17 +2004,20 @@
   }
   // ---- END CUSTOM PACKAGE ----
 
-  function openSecret() {
-    document.getElementById('secretModal').classList.add('open');
+  // ---- FAQ ----
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
   }
 
-  function closeSecret() {
-    document.getElementById('secretModal').classList.remove('open');
+  // ---- KC WALLET PREVIEW ----
+  function updateKcPreview() {
+    const b = parseInt(localStorage.getItem('kc_balance') || '1');
+    const el = document.getElementById('kcWalletPreview');
+    if (el) el.textContent = b + ' KC ($0.00)';
   }
-
-  document.getElementById('secretModal').addEventListener('click', function(e) {
-    if (e.target === this) closeSecret();
-  });
+  updateKcPreview();
+  window.addEventListener('storage', updateKcPreview);
 
   function showToast(msg) {
     const t = document.getElementById('toast');
