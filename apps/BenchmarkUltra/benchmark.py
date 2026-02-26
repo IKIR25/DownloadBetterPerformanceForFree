@@ -480,6 +480,15 @@ class MainWindow(QMainWindow):
 # Entry point
 # ══════════════════════════════════════════════════════════════════════════════
 def find_video():
+    # 1. Bundled video (PyInstaller onefile extracts to sys._MEIPASS)
+    try:
+        bundled = os.path.join(sys._MEIPASS, "benchmark_video.webm")
+        if os.path.isfile(bundled):
+            return bundled
+    except AttributeError:
+        pass
+
+    # 2. Same folder as the script/exe, then Desktop
     exts = (".mp4", ".avi", ".mkv", ".mov", ".webm", ".wmv", ".m4v")
     for folder in (os.path.dirname(os.path.abspath(sys.argv[0])),
                    os.path.expanduser("~/Desktop")):
