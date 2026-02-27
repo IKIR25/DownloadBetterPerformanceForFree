@@ -142,8 +142,9 @@ class HomePage(QWidget):
 
         # Status panel
         panel = QFrame()
+        panel.setObjectName("stat_panel")
         panel.setStyleSheet(
-            "QFrame{background:#0d0d0d;border:1px solid #1a2a1a;border-radius:12px;}")
+            "#stat_panel{background:#0d0d0d;border:1px solid #1a2a1a;border-radius:12px;}")
         pl = QVBoxLayout(panel)
         pl.setContentsMargins(28, 20, 28, 20)
         pl.setSpacing(10)
@@ -330,8 +331,9 @@ class ResultsPage(QWidget):
         # Threat cards
         for name, severity, path, col in VIRUSES:
             card = QFrame()
+            card.setObjectName("threat_card")
             card.setStyleSheet(
-                f"QFrame{{background:#0d0505;border:1px solid #2a0a0a;border-radius:10px;}}")
+                "#threat_card{background:#0d0505;border:1px solid #2a0a0a;border-radius:10px;}")
             cl = QVBoxLayout(card)
             cl.setContentsMargins(20, 14, 20, 14)
             cl.setSpacing(4)
@@ -483,8 +485,9 @@ class ClearPage(QWidget):
 
         # Stats panel
         panel = QFrame()
+        panel.setObjectName("stats_panel")
         panel.setStyleSheet(
-            "QFrame{background:#080808;border:1px solid #1a2a1a;border-radius:12px;}")
+            "#stats_panel{background:#080808;border:1px solid #1a2a1a;border-radius:12px;}")
         pl = QHBoxLayout(panel)
         pl.setContentsMargins(32, 20, 32, 20)
         pl.setSpacing(0)

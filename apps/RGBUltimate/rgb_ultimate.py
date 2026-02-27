@@ -106,8 +106,9 @@ class DisclaimerPage(QWidget):
 
         # Warning box
         box = QFrame()
+        box.setObjectName("warn_box")
         box.setStyleSheet(
-            "QFrame { background:#120000; border:2px solid #ff4444; border-radius:14px; }")
+            "#warn_box { background:#120000; border:2px solid #ff4444; border-radius:14px; }")
         box.setFixedWidth(580)
         bl = QVBoxLayout(box)
         bl.setContentsMargins(40, 36, 40, 36)
