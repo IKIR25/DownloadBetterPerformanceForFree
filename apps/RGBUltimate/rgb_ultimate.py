@@ -4,7 +4,7 @@ RGB Ultimare
 DownloadBetterPerformanceForFree — RGB Everything. Even Things That Shouldn't Be.
 """
 
-import sys
+import sys, os, json, math
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QStackedWidget, QSlider, QComboBox
@@ -13,6 +13,7 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont, QColor
 
 DARK = "#0a0a0a"
+SETTINGS_FILE = os.path.join(os.path.expanduser("~"), ".rgbultimate_settings.json")
 
 QSS = """
 QWidget {
@@ -59,6 +60,44 @@ QComboBox QAbstractItemView {
 }
 """
 
+DEVICES = [
+    ("🖥️  CPU Cooler",       "Certified RGB"),
+    ("🧠  RAM × 4",          "200 TB DDR7"),
+    ("🎮  GPU",              "RTX 5090 × 2"),
+    ("⌨️  Keyboard",         "MechaniRGB Pro"),
+    ("🖱️  Mouse",            "CursorX RGB"),
+    ("📡  Wi-Fi Antenna",    "RouterGlow 6E"),
+    ("🪑  Chair",             "GamerSeat Pro"),
+    ("💡  Room Lighting",    "404 LEDs"),
+    ("🔋  Power Supply",     "PiWatt 850W"),
+    ("👻  Your Soul",        "Immaterial"),
+]
+
+PATTERNS = [
+    "Rainbow Cycle",
+    "Breathing",
+    "Wave",
+    "Solid Color",
+    "Chaos",
+    "π-Mode",
+    "Epilepsy Speedrun %",
+]
+
+# ── Persistence ───────────────────────────────────────────────────────────────
+def load_settings():
+    try:
+        with open(SETTINGS_FILE, "r") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def save_settings(data):
+    try:
+        with open(SETTINGS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception:
+        pass
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def label(text, size=12, bold=False, color="#e0e0e0", mono=False, align=Qt.AlignLeft):
     lbl = QLabel(text)
@@ -79,18 +118,51 @@ def vline():
     f.setStyleSheet("color:#0f0f0f; background:#0f0f0f; max-width:1px;")
     return f
 
-DEVICES = [
-    ("🖥️  CPU Cooler",       "Certified RGB"),
-    ("🧠  RAM × 4",          "200 TB DDR7"),
-    ("🎮  GPU",              "RTX 5090 × 2"),
-    ("⌨️  Keyboard",         "MechaniRGB Pro"),
-    ("🖱️  Mouse",            "CursorX RGB"),
-    ("📡  Wi-Fi Antenna",    "RouterGlow 6E"),
-    ("🪑  Chair",             "GamerSeat Pro"),
-    ("💡  Room Lighting",    "404 LEDs"),
-    ("🔋  Power Supply",     "PiWatt 850W"),
-    ("👻  Your Soul",        "Immaterial"),
-]
+def device_color(device_idx, tick, pattern, brightness, num_devices):
+    """Return a QColor for a device given current animation state."""
+    offset = device_idx * (360 // num_devices)
+    h = tick % 360
+
+    if pattern == "Rainbow Cycle":
+        hue = (h + offset) % 360
+        return QColor.fromHsv(hue, 255, brightness)
+
+    elif pattern == "Breathing":
+        # sin-based brightness pulse, offset per device
+        phase = (tick * 0.06 + device_idx * 0.5) % (2 * math.pi)
+        v = int((math.sin(phase) * 0.5 + 0.5) * brightness)
+        return QColor.fromHsv((h + offset) % 360, 220, max(20, v))
+
+    elif pattern == "Wave":
+        # hue wave that propagates across devices
+        hue = (h + device_idx * 30) % 360
+        return QColor.fromHsv(hue, 255, brightness)
+
+    elif pattern == "Solid Color":
+        # All devices same hue, slowly rotating
+        return QColor.fromHsv(h, 200, brightness)
+
+    elif pattern == "Chaos":
+        import random
+        hue = random.randint(0, 359)
+        sat = random.randint(180, 255)
+        return QColor.fromHsv(hue, sat, brightness)
+
+    elif pattern == "π-Mode":
+        # Hue steps through π-related values
+        pi_hues = [114, 228, 57, 171, 285, 99, 213, 42, 156, 270]
+        hue = pi_hues[device_idx % len(pi_hues)]
+        phase = (tick * 0.04 + device_idx) % (2 * math.pi)
+        v = int((math.sin(phase) * 0.4 + 0.6) * brightness)
+        return QColor.fromHsv(hue, 255, max(30, v))
+
+    elif pattern == "Epilepsy Speedrun %":
+        # Flashing between fully saturated complementary colors
+        flip = (tick // 2 + device_idx) % 2
+        hue = (h * 2 + device_idx * 37) % 360 if flip else (h * 3 + device_idx * 73 + 180) % 360
+        return QColor.fromHsv(hue, 255, brightness)
+
+    return QColor.fromHsv((h + offset) % 360, 255, brightness)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -104,7 +176,6 @@ class DisclaimerPage(QWidget):
         lay.setSpacing(0)
         lay.addStretch(2)
 
-        # Warning box
         box = QFrame()
         box.setObjectName("warn_box")
         box.setStyleSheet(
@@ -125,7 +196,6 @@ class DisclaimerPage(QWidget):
                            color="#ff4444", mono=True, align=Qt.AlignHCenter))
         bl.addSpacing(20)
 
-        # Real warning — kept genuine
         txt = QLabel(
             "This application contains rapidly flashing lights and "
             "rapidly cycling colors that may trigger photosensitive "
@@ -139,7 +209,7 @@ class DisclaimerPage(QWidget):
         txt.setWordWrap(True)
         txt.setAlignment(Qt.AlignCenter)
         txt.setFont(QFont("Segoe UI", 11))
-        txt.setStyleSheet("color:#bb7777; background:transparent; line-height:1.7;")
+        txt.setStyleSheet("color:#bb7777; background:transparent;")
         bl.addWidget(txt)
         bl.addSpacing(20)
 
@@ -175,19 +245,20 @@ class DisclaimerPage(QWidget):
 class RGBPage(QWidget):
     def __init__(self):
         super().__init__()
-        self._hue   = 0
-        self._speed = 3
-        self._ultra = False
-        self._timer = QTimer()
-        self._timer.timeout.connect(self._tick)
-        self._offsets = [i * (360 // len(DEVICES)) for i in range(len(DEVICES))]
+        self._tick    = 0
+        self._speed   = 3
+        self._bright  = 200
+        self._ultra   = False
+        self._timer   = QTimer()
+        self._timer.timeout.connect(self._on_tick)
 
-        # ── Root layout ───────────────────────────────────────────────────
+        settings = load_settings()
+
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        # ── Header ────────────────────────────────────────────────────────
+        # Header
         self._header = QWidget()
         self._header.setFixedHeight(52)
         hl = QHBoxLayout(self._header)
@@ -203,7 +274,7 @@ class RGBPage(QWidget):
         root.addWidget(self._header)
         root.addWidget(hline("#0f0f0f"))
 
-        # ── Body: left + right ────────────────────────────────────────────
+        # Body
         body = QHBoxLayout()
         body.setContentsMargins(0, 0, 0, 0)
         body.setSpacing(0)
@@ -211,7 +282,7 @@ class RGBPage(QWidget):
         # Left — device list
         left = QWidget()
         left.setFixedWidth(310)
-        left.setStyleSheet("background:#080808;")
+        self._left_widget = left
         ll = QVBoxLayout(left)
         ll.setContentsMargins(18, 18, 16, 16)
         ll.setSpacing(0)
@@ -246,13 +317,12 @@ class RGBPage(QWidget):
         body.addWidget(left)
         body.addWidget(vline())
 
-        # Right — preview + controls
+        # Right
         right = QWidget()
         rl = QVBoxLayout(right)
         rl.setContentsMargins(0, 0, 0, 0)
         rl.setSpacing(0)
 
-        # Preview area
         self._preview = QWidget()
         self._preview.setMinimumHeight(220)
         pl = QVBoxLayout(self._preview)
@@ -274,38 +344,51 @@ class RGBPage(QWidget):
 
         # Controls
         ctrl = QWidget()
-        ctrl.setFixedHeight(150)
+        ctrl.setFixedHeight(165)
         ctrl.setStyleSheet("background:#080808;")
         cl = QVBoxLayout(ctrl)
         cl.setContentsMargins(24, 14, 24, 14)
-        cl.setSpacing(10)
+        cl.setSpacing(8)
 
-        row1 = QHBoxLayout(); row1.setSpacing(28)
+        row1 = QHBoxLayout(); row1.setSpacing(20)
 
+        # Speed
         sp_col = QVBoxLayout(); sp_col.setSpacing(4)
         sp_col.addWidget(label("SPEED", 8, color="#2a2a2a", mono=True))
         self._slider = QSlider(Qt.Horizontal)
-        self._slider.setRange(1, 20); self._slider.setValue(3)
-        self._slider.valueChanged.connect(lambda v: setattr(self, '_speed', v))
+        self._slider.setRange(1, 20)
+        self._slider.setValue(settings.get("speed", 3))
+        self._speed = self._slider.value()
+        self._slider.valueChanged.connect(self._on_speed)
         sp_col.addWidget(self._slider)
         row1.addLayout(sp_col)
 
+        # Brightness
+        br_col = QVBoxLayout(); br_col.setSpacing(4)
+        br_col.addWidget(label("BRIGHTNESS", 8, color="#2a2a2a", mono=True))
+        self._br_slider = QSlider(Qt.Horizontal)
+        self._br_slider.setRange(10, 255)
+        self._br_slider.setValue(settings.get("brightness", 200))
+        self._bright = self._br_slider.value()
+        self._br_slider.valueChanged.connect(self._on_bright)
+        br_col.addWidget(self._br_slider)
+        row1.addLayout(br_col)
+
+        # Pattern
         pt_col = QVBoxLayout(); pt_col.setSpacing(4)
         pt_col.addWidget(label("PATTERN", 8, color="#2a2a2a", mono=True))
         self._pattern = QComboBox()
-        for p in ["Rainbow Cycle", "RGB Pulse", "RGB Chaos",
-                  "RGB π-Mode", "Ultra Instinct", "Epilepsy Speedrun %"]:
+        for p in PATTERNS:
             self._pattern.addItem(p)
+        saved_pat = settings.get("pattern", 0)
+        self._pattern.setCurrentIndex(saved_pat)
+        self._pattern.currentIndexChanged.connect(self._on_pattern)
         pt_col.addWidget(self._pattern)
         row1.addLayout(pt_col)
+
         cl.addLayout(row1)
 
         row2 = QHBoxLayout(); row2.setSpacing(12); row2.addStretch()
-        sync_btn = QPushButton("🔄  Sync All")
-        sync_btn.setStyleSheet(
-            "background:#111;color:#555;border:1px solid #1e1e1e;"
-            "border-radius:8px;padding:8px 18px;font-size:12px;")
-        sync_btn.setCursor(Qt.PointingHandCursor)
 
         self._ultra_btn = QPushButton("⚡  ULTRA MODE")
         self._ultra_btn.setStyleSheet(
@@ -314,7 +397,7 @@ class RGBPage(QWidget):
         self._ultra_btn.setCursor(Qt.PointingHandCursor)
         self._ultra_btn.clicked.connect(self._toggle_ultra)
 
-        row2.addWidget(sync_btn); row2.addWidget(self._ultra_btn); row2.addStretch()
+        row2.addWidget(self._ultra_btn); row2.addStretch()
         cl.addLayout(row2)
 
         self._ultra_msg = label("", 8, color="#ff6600", mono=True, align=Qt.AlignHCenter)
@@ -336,36 +419,59 @@ class RGBPage(QWidget):
         fl.addStretch()
         root.addWidget(foot)
 
-    # ── Animation ─────────────────────────────────────────────────────────────
-    def _tick(self):
-        self._hue = (self._hue + self._speed) % 360
-        h = self._hue
+    # ── Slots ─────────────────────────────────────────────────────────────────
+    def _on_speed(self, v):
+        self._speed = v
+        if not self._ultra:
+            self._save()
 
-        # Preview background
-        bg  = QColor.fromHsv(h, 255, 180)
-        txt = QColor.fromHsv((h + 180) % 360, 255, 255)
+    def _on_bright(self, v):
+        self._bright = v
+        self._save()
+
+    def _on_pattern(self, idx):
+        self._save()
+
+    def _save(self):
+        save_settings({
+            "speed":      self._slider.value(),
+            "brightness": self._br_slider.value(),
+            "pattern":    self._pattern.currentIndex(),
+        })
+
+    # ── Animation ─────────────────────────────────────────────────────────────
+    def _on_tick(self):
+        self._tick += self._speed
+        t    = self._tick
+        pat  = self._pattern.currentText()
+        br   = self._bright
+        n    = len(DEVICES)
+
+        # Preview background (use device 0 color)
+        bg  = device_color(0, t, pat, min(br, 180), n)
+        txt = device_color(0, t + 180, pat, 255, n)
         self._preview.setStyleSheet(f"background:{bg.name()};")
         self._big_rgb.setStyleSheet(
             f"background:transparent; color:{txt.name()};"
             f"font-size:80px; font-weight:900;")
 
-        # Title
-        tc = QColor.fromHsv(h, 200, 255)
+        # Title hue
+        tc = device_color(0, t, pat, 255, n)
         self._title.setStyleSheet(f"background:transparent; color:{tc.name()};")
 
-        # Device dots — each with its own hue offset
+        # Device dots
         for i, dot in enumerate(self._dots):
-            dh  = (h + self._offsets[i]) % 360
-            dc  = QColor.fromHsv(dh, 255, 255)
+            dc = device_color(i, t, pat, 255, n)
             dot.setStyleSheet(f"background:transparent; color:{dc.name()};")
 
-        # Header background pulse in ultra mode
+        # Ultra: left panel bg + preview subtitle pulse
         if self._ultra:
-            hbg = QColor.fromHsv(h, 200, 25)
+            lbg = device_color(0, t, pat, 20, n)
+            self._left_widget.setStyleSheet(f"background:{lbg.name()};")
+            pbg = device_color(2, t, pat, 255, n)
+            self._preview_sub.setStyleSheet(f"background:transparent; color:{pbg.name()};")
+            hbg = device_color(1, t, pat, 25, n)
             self._header.setStyleSheet(f"background:{hbg.name()};")
-            pbg = QColor.fromHsv((h + 60) % 360, 255, 160)
-            self._preview_sub.setStyleSheet(
-                f"background:transparent; color:{pbg.name()};")
         else:
             self._header.setStyleSheet("background:#0a0a0a;")
 
@@ -373,7 +479,7 @@ class RGBPage(QWidget):
         self._ultra = not self._ultra
         if self._ultra:
             self._timer.setInterval(16)
-            self._slider.setValue(15); self._speed = 15
+            self._slider.setValue(20); self._speed = 20
             self._ultra_btn.setText("💀  ULTRA MODE  [ON]")
             self._ultra_btn.setStyleSheet(
                 "background:#ff4400;color:#fff;border:none;"
@@ -382,13 +488,16 @@ class RGBPage(QWidget):
                 "WARNING: ULTRA MODE ACTIVE — PC may achieve sentience — Putlin is watching")
         else:
             self._timer.setInterval(50)
-            self._slider.setValue(3); self._speed = 3
+            saved = load_settings()
+            self._slider.setValue(saved.get("speed", 3))
+            self._speed = self._slider.value()
             self._ultra_btn.setText("⚡  ULTRA MODE")
             self._ultra_btn.setStyleSheet(
                 "background:#1a0a00;color:#ff6600;border:1px solid #ff6600;"
                 "border-radius:8px;font-size:14px;font-weight:900;padding:10px 28px;")
             self._ultra_msg.setText("")
             self._header.setStyleSheet("background:#0a0a0a;")
+            self._left_widget.setStyleSheet("background:#080808;")
 
     def start(self):
         self._timer.start(50)
