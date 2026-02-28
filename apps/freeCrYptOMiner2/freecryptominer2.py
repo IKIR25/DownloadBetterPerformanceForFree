@@ -265,13 +265,12 @@ class MinerApp(QMainWindow):
         stats_row = QHBoxLayout()
         stats_row.setSpacing(10)
 
-        _, self.hr_val = stat_card("⚡ Hashrate", "0 KH/s", GOLD, GOLD)
-        _, self.kc_val = stat_card("🪙 You (1%)", f"{self.total_kc*0.01:.6f} KC", GREEN, GREEN)
-        _, self.site_val = stat_card("🏦 Sito Fidato (99%)", f"{self.total_kc*0.99:.6f} KC", GOLD)
-        _, self.blocks_val = stat_card("📦 Blocks", "0", WHITE)
+        hr_card,     self.hr_val     = stat_card("⚡ Hashrate", "0 KH/s", GOLD, GOLD)
+        kc_card,     self.kc_val     = stat_card("🪙 You (1%)", f"{self.total_kc*0.01:.6f} KC", GREEN, GREEN)
+        site_card,   self.site_val   = stat_card("🏦 Sito Fidato (99%)", f"{self.total_kc*0.99:.6f} KC", GOLD)
+        blocks_card, self.blocks_val = stat_card("📦 Blocks", "0", WHITE)
 
-        for w in [self.hr_val.parent(), self.kc_val.parent(),
-                  self.site_val.parent(), self.blocks_val.parent()]:
+        for w in [hr_card, kc_card, site_card, blocks_card]:
             stats_row.addWidget(w, 1)
 
         main.addLayout(stats_row)
