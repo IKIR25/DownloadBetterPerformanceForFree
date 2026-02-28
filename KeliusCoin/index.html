@@ -1,305 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="KeliusCoin — the world's only sub-zero cryptocurrency. Price: $0.00. Market cap: $0.00. Maximum stability. HODL." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪙</text></svg>" />
   <title>KeliusCoin — The Crypto of the Future | $0.00</title>
   <style>
-    :root{--green:#00ff88;--dark:#0a0a0a;--card:#111;--gold:#ffd700;--red:#ff4444;--blue:#4488ff;--kc:#ffaa00;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--dark);color:#e0e0e0;font-family:'Segoe UI',sans-serif;min-height:100vh;}
-    header{background:linear-gradient(135deg,#0a0800,#1a1200);border-bottom:2px solid var(--kc);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-    .logo{font-size:1.1rem;font-weight:900;color:var(--kc);text-shadow:0 0 10px var(--kc);}
-    .logo span{color:#fff;}
-    .back-link{font-size:0.82rem;color:#555;text-decoration:none;transition:color .15s;}
-    .back-link:hover{color:var(--kc);}
-    .hero{text-align:center;padding:52px 24px 36px;background:radial-gradient(ellipse at top,#1a0e00 0%,transparent 70%);}
-    .hero h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;color:#fff;margin-bottom:8px;}
-    .hero h1 span{color:var(--kc);text-shadow:0 0 20px var(--kc);}
-    .hero p{color:#666;font-size:0.9rem;max-width:500px;margin:10px auto 0;line-height:1.6;}
-    .kc-symbol{font-size:4rem;margin-bottom:8px;display:block;filter:drop-shadow(0 0 15px var(--kc));}
-    .wrap{max-width:860px;margin:0 auto;padding:32px 24px 60px;}
+    :root {
+      --green: #00ff88;
+      --dark: #0a0a0a;
+      --card: #111;
+      --gold: #ffd700;
+      --red: #ff4444;
+      --blue: #4488ff;
+      --kc: #ffaa00;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0a0800, #1a1200);
+      border-bottom: 2px solid var(--kc);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--kc);
+      text-shadow: 0 0 10px var(--kc);
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    .back-link {
+      font-size: 0.82rem;
+      color: #555;
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .back-link:hover {
+      color: var(--kc);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 52px 24px 36px;
+      background: radial-gradient(ellipse at top, #1a0e00 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span {
+      color: var(--kc);
+      text-shadow: 0 0 20px var(--kc);
+    }
+
+    .hero p {
+      color: #666;
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 10px auto 0;
+      line-height: 1.6;
+    }
+
+    .kc-symbol {
+      font-size: 4rem;
+      margin-bottom: 8px;
+      display: block;
+      filter: drop-shadow(0 0 15px var(--kc));
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
 
     /* PRICE TICKER */
-    .price-ticker{background:#0a0800;border:2px solid var(--kc);border-radius:14px;padding:24px;text-align:center;margin-bottom:28px;}
-    .ticker-price{font-size:3rem;font-weight:900;color:var(--kc);text-shadow:0 0 20px var(--kc);}
-    .ticker-change{font-size:0.85rem;color:#555;margin-top:4px;}
-    .ticker-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #1a1200;}
-    .t-stat{text-align:center;}
-    .t-stat-val{font-size:1.1rem;font-weight:900;color:var(--kc);}
-    .t-stat-label{font-size:0.68rem;color:#555;text-transform:uppercase;letter-spacing:.5px;}
+    .price-ticker {
+      background: #0a0800;
+      border: 2px solid var(--kc);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .ticker-price {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--kc);
+      text-shadow: 0 0 20px var(--kc);
+    }
+
+    .ticker-change {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .ticker-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #1a1200;
+    }
+
+    .t-stat {
+      text-align: center;
+    }
+
+    .t-stat-val {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--kc);
+    }
+
+    .t-stat-label {
+      font-size: 0.68rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
 
     /* CHART */
-    .chart-card{background:var(--card);border:1px solid #1a1200;border-radius:14px;padding:24px;margin-bottom:28px;}
-    .chart-card h2{font-size:0.95rem;font-weight:800;color:#888;margin-bottom:16px;}
-    .chart-area{height:120px;position:relative;border-bottom:1px solid #1a1a1a;border-left:1px solid #1a1a1a;margin-bottom:8px;}
-    .chart-line{width:100%;height:100%;display:block;}
-    .chart-label{font-size:0.65rem;color:#333;display:flex;justify-content:space-between;}
+    .chart-card {
+      background: var(--card);
+      border: 1px solid #1a1200;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .chart-card h2 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .chart-area {
+      height: 120px;
+      position: relative;
+      border-bottom: 1px solid #1a1a1a;
+      border-left: 1px solid #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .chart-line {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .chart-label {
+      font-size: 0.65rem;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+    }
 
     /* WALLET */
-    .wallet-card{background:linear-gradient(135deg,#0a0800,#141000);border:2px solid var(--kc);border-radius:16px;padding:28px;margin-bottom:28px;position:relative;overflow:hidden;}
-    .wallet-card::before{content:'KC';position:absolute;font-size:10rem;font-weight:900;color:rgba(255,170,0,0.03);right:-20px;top:-20px;pointer-events:none;}
-    .wallet-title{font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
-    .wallet-balance{font-size:3rem;font-weight:900;color:var(--kc);text-shadow:0 0 20px var(--kc);margin-bottom:4px;}
-    .wallet-usd{font-size:0.85rem;color:#444;}
-    .wallet-address{font-family:monospace;font-size:0.65rem;color:#333;margin-top:12px;word-break:break-all;}
+    .wallet-card {
+      background: linear-gradient(135deg, #0a0800, #141000);
+      border: 2px solid var(--kc);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wallet-card::before {
+      content: 'KC';
+      position: absolute;
+      font-size: 10rem;
+      font-weight: 900;
+      color: rgba(255, 170, 0, 0.03);
+      right: -20px;
+      top: -20px;
+      pointer-events: none;
+    }
+
+    .wallet-title {
+      font-size: 0.8rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 8px;
+    }
+
+    .wallet-balance {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--kc);
+      text-shadow: 0 0 20px var(--kc);
+      margin-bottom: 4px;
+    }
+
+    .wallet-usd {
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    .wallet-address {
+      font-family: monospace;
+      font-size: 0.65rem;
+      color: #333;
+      margin-top: 12px;
+      word-break: break-all;
+    }
 
     /* MINE BUTTON */
-    .mine-section{background:#0a0800;border:1px solid #2a1800;border-radius:12px;padding:24px;margin-bottom:28px;text-align:center;}
-    .mine-section h2{font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px;}
-    .mine-section p{font-size:0.82rem;color:#555;margin-bottom:18px;line-height:1.5;}
-    .mine-timer{font-size:2.5rem;font-weight:900;color:var(--kc);margin:12px 0;text-shadow:0 0 15px var(--kc);}
-    .mine-bar-bg{background:#1a1000;border-radius:6px;height:8px;overflow:hidden;margin-bottom:16px;}
-    .mine-bar-fill{height:100%;background:linear-gradient(90deg,var(--kc),#ff6600);border-radius:6px;width:0%;transition:width .5s linear;box-shadow:0 0 10px var(--kc);}
-    .btn-mine{padding:13px 36px;background:var(--kc);color:#000;font-weight:900;font-size:1rem;border:none;border-radius:10px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:opacity .15s,transform .1s;}
-    .btn-mine:hover{opacity:.85;}
-    .btn-mine:active{transform:scale(.98);}
-    .btn-mine:disabled{background:#222;color:#555;cursor:default;}
-    .mine-log{font-size:0.72rem;color:#444;margin-top:10px;font-family:monospace;min-height:20px;}
+    .mine-section {
+      background: #0a0800;
+      border: 1px solid #2a1800;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .mine-section h2 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .mine-section p {
+      font-size: 0.82rem;
+      color: #555;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .mine-timer {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--kc);
+      margin: 12px 0;
+      text-shadow: 0 0 15px var(--kc);
+    }
+
+    .mine-bar-bg {
+      background: #1a1000;
+      border-radius: 6px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .mine-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--kc), #ff6600);
+      border-radius: 6px;
+      width: 0%;
+      transition: width .5s linear;
+      box-shadow: 0 0 10px var(--kc);
+    }
+
+    .btn-mine {
+      padding: 13px 36px;
+      background: var(--kc);
+      color: #000;
+      font-weight: 900;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      transition: opacity .15s, transform .1s;
+    }
+
+    .btn-mine:hover {
+      opacity: .85;
+    }
+
+    .btn-mine:active {
+      transform: scale(.98);
+    }
+
+    .btn-mine:disabled {
+      background: #222;
+      color: #555;
+      cursor: default;
+    }
+
+    .mine-log {
+      font-size: 0.72rem;
+      color: #444;
+      margin-top: 10px;
+      font-family: monospace;
+      min-height: 20px;
+    }
 
     /* ABOUT KC */
-    .about-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px;}
-    .about-card{background:#0d0d0d;border:1px solid #1a1200;border-radius:10px;padding:18px;text-align:center;}
-    .about-card-icon{font-size:1.8rem;margin-bottom:8px;display:block;}
-    .about-card-title{font-size:0.85rem;font-weight:800;color:var(--kc);margin-bottom:4px;}
-    .about-card-text{font-size:0.75rem;color:#555;line-height:1.5;}
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .about-card {
+      background: #0d0d0d;
+      border: 1px solid #1a1200;
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .about-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .about-card-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--kc);
+      margin-bottom: 4px;
+    }
+
+    .about-card-text {
+      font-size: 0.75rem;
+      color: #555;
+      line-height: 1.5;
+    }
 
     /* HOW TO */
-    .howto{background:#0a0800;border:1px solid #1a1200;border-radius:12px;padding:24px;margin-bottom:28px;}
-    .howto h2{font-size:1rem;font-weight:800;color:#fff;margin-bottom:16px;}
-    .step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
-    .step-num{width:28px;height:28px;border-radius:50%;background:var(--kc);color:#000;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .step-text strong{color:#ccc;display:block;font-size:0.88rem;margin-bottom:2px;}
-    .step-text span{color:#555;font-size:0.78rem;}
+    .howto {
+      background: #0a0800;
+      border: 1px solid #1a1200;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .howto h2 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--kc);
+      color: #000;
+      font-weight: 900;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-text strong {
+      color: #ccc;
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
+
+    .step-text span {
+      color: #555;
+      font-size: 0.78rem;
+    }
 
     /* REVIEWS */
-    .reviews-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:14px;}
-    .review-card{background:#0d0800;border:1px solid #1a1000;border-radius:10px;padding:18px;margin-bottom:12px;}
-    .review-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-    .reviewer{font-weight:700;color:#ccc;font-size:0.88rem;}
-    .stars{color:var(--gold);font-size:0.82rem;}
-    .review-body{font-size:0.83rem;color:#666;line-height:1.5;}
-    .review-badge{margin-top:8px;font-size:0.65rem;color:var(--kc);}
+    .reviews-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+    }
 
-    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;border:1px solid var(--kc);color:var(--kc);padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:1000;white-space:nowrap;}
-    .toast.show{opacity:1;}
-    footer{background:#050505;border-top:1px solid #111;padding:20px 24px;text-align:center;}
-    footer p{font-size:0.72rem;color:#333;}
-    footer a{color:var(--kc);text-decoration:none;}
+    .review-card {
+      background: #0d0800;
+      border: 1px solid #1a1000;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .review-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .reviewer {
+      font-weight: 700;
+      color: #ccc;
+      font-size: 0.88rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.82rem;
+    }
+
+    .review-body {
+      font-size: 0.83rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .review-badge {
+      margin-top: 8px;
+      font-size: 0.65rem;
+      color: var(--kc);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111;
+      border: 1px solid var(--kc);
+      color: var(--kc);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      z-index: 1000;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    footer {
+      background: #050505;
+      border-top: 1px solid #111;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: #333;
+    }
+
+    footer a {
+      color: var(--kc);
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">Kelius<span>Coin</span> — <span>$0.00</span></div>
-  <a class="back-link" href="../">← Back to Downloads</a>
-</header>
+  <header>
+    <div class="logo">Kelius<span>Coin</span> — <span>$0.00</span></div>
+    <a class="back-link" href="../">← Back to Downloads</a>
+  </header>
 
-<div class="hero">
-  <span class="kc-symbol">🪙</span>
-  <h1>Kelius<span>Coin</span></h1>
-  <p>The world's only cryptocurrency powered by sub-zero temperatures and π-based blockchain technology. Currently valued at $0.00. This is expected. HODL.</p>
-</div>
-
-<div class="wrap">
-
-  <!-- PRICE -->
-  <div class="price-ticker">
-    <div class="ticker-price">$0.00</div>
-    <div class="ticker-change">▼ $0.00 (0.00%) — Stable. Very stable. Impressively stable.</div>
-    <div class="ticker-stats">
-      <div class="t-stat"><div class="t-stat-val">$0.00</div><div class="t-stat-label">Market Cap</div></div>
-      <div class="t-stat"><div class="t-stat-val">3.14 KC</div><div class="t-stat-label">Total Supply</div></div>
-      <div class="t-stat"><div class="t-stat-val">−274 K</div><div class="t-stat-label">Blockchain Temp</div></div>
-      <div class="t-stat"><div class="t-stat-val">π</div><div class="t-stat-label">Block Time (s)</div></div>
-      <div class="t-stat"><div class="t-stat-val">100%</div><div class="t-stat-label">You Own</div></div>
-    </div>
+  <div class="hero">
+    <span class="kc-symbol">🪙</span>
+    <h1>Kelius<span>Coin</span></h1>
+    <p>The world's only cryptocurrency powered by sub-zero temperatures and π-based blockchain technology. Currently
+      valued at $0.00. This is expected. HODL.</p>
   </div>
 
-  <!-- CHART -->
-  <div class="chart-card">
-    <h2>📈 KC/USD Price Chart — All Time</h2>
-    <div class="chart-area">
-      <svg class="chart-line" viewBox="0 0 400 100" preserveAspectRatio="none">
-        <polyline points="0,50 40,50 80,50 120,50 160,50 200,50 240,50 280,50 320,50 360,50 400,50"
-          fill="none" stroke="#ffaa00" stroke-width="2" opacity="0.6"/>
-        <text x="10" y="45" fill="#333" font-size="10">$0.00</text>
-        <text x="10" y="95" fill="#333" font-size="10">$0.00</text>
-      </svg>
+  <div class="wrap">
+
+    <!-- PRICE -->
+    <div class="price-ticker">
+      <div class="ticker-price">$0.00</div>
+      <div class="ticker-change">▼ $0.00 (0.00%) — Stable. Very stable. Impressively stable.</div>
+      <div class="ticker-stats">
+        <div class="t-stat">
+          <div class="t-stat-val">$0.00</div>
+          <div class="t-stat-label">Market Cap</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val">3.14 KC</div>
+          <div class="t-stat-label">Total Supply</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val">−274 K</div>
+          <div class="t-stat-label">Blockchain Temp</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val">π</div>
+          <div class="t-stat-label">Block Time (s)</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val">100%</div>
+          <div class="t-stat-label">You Own</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-label"><span>Launch (2025)</span><span>Now</span></div>
-    <p style="font-size:0.72rem;color:#333;margin-top:8px;text-align:center;">Perfectly flat line indicates maximum stability. This is not a bug.</p>
+
+    <!-- CHART -->
+    <div class="chart-card">
+      <h2>📈 KC/USD Price Chart — All Time</h2>
+      <div class="chart-area">
+        <svg class="chart-line" viewBox="0 0 400 100" preserveAspectRatio="none">
+          <polyline points="0,50 40,50 80,50 120,50 160,50 200,50 240,50 280,50 320,50 360,50 400,50" fill="none"
+            stroke="#ffaa00" stroke-width="2" opacity="0.6" />
+          <text x="10" y="45" fill="#333" font-size="10">$0.00</text>
+          <text x="10" y="95" fill="#333" font-size="10">$0.00</text>
+        </svg>
+      </div>
+      <div class="chart-label"><span>Launch (2025)</span><span>Now</span></div>
+      <p style="font-size:0.72rem;color:#333;margin-top:8px;text-align:center;">Perfectly flat line indicates maximum
+        stability. This is not a bug.</p>
+    </div>
+
+    <!-- WALLET -->
+    <div class="wallet-card">
+      <div class="wallet-title">🏦 Your KeliusCoin Wallet</div>
+      <div class="wallet-balance" id="walletBalance">1</div>
+      <div class="wallet-usd" id="walletUsd">≈ $0.00 USD (you are rich in spirit)</div>
+      <div class="wallet-address" id="walletAddress">KC-ADDRESS: Loading...</div>
+    </div>
+
+    <!-- MINE -->
+    <div class="mine-section">
+      <h2>⛏️ Mine KeliusCoin</h2>
+      <p>Click the button to start mining. Your GPU will work very hard for π seconds. Then you get 1 KC.<br>
+        <em style="color:#333;">Note: actual GPU usage: 0%. Actual coin value: $0.00. This is fine.</em>
+      </p>
+      <div class="mine-timer" id="mineTimer">π</div>
+      <div class="mine-bar-bg">
+        <div class="mine-bar-fill" id="mineBarFill"></div>
+      </div>
+      <button class="btn-mine" id="mineBtn" onclick="startMining()">⛏️ START MINING</button>
+      <div class="mine-log" id="mineLog"></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="about-grid">
+      <div class="about-card">
+        <span class="about-card-icon">🌡️</span>
+        <div class="about-card-title">Sub-Zero Blockchain</div>
+        <div class="about-card-text">All transactions processed at −274 Kelvin for maximum security and minimum power
+          usage.</div>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">📐</span>
+        <div class="about-card-title">π-Based Proof of Work</div>
+        <div class="about-card-text">Each block requires calculating the next digit of π. Infinite supply cap: never
+          runs out.</div>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">🔒</span>
+        <div class="about-card-title">Quantum Secure</div>
+        <div class="about-card-text">Our encryption was certified by VirusDeleter 6.2. Only 3.14 vulnerabilities found.
+          All deleted.</div>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">💸</span>
+        <div class="about-card-title">Zero Transaction Fees</div>
+        <div class="about-card-text">0% fees because $0.00 × 0% = $0.00. We keep nothing. There's nothing to keep.</div>
+      </div>
+    </div>
+
+    <!-- HOW TO -->
+    <div class="howto">
+      <h2>🚀 How to Get Started</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>You already have 1 KC</strong><span>It was automatically deposited when you
+            visited this page. You're already rich.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Mine more KC</strong><span>Click "Start Mining" above. Wait π seconds. Receive 1
+            KC. Repeat until satisfied.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>HODL</strong><span>The price is $0.00 now but may go up. Or stay at $0.00.
+            Experts disagree. (All experts are us.)</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Download the Miner App</strong><span>A real desktop app is coming soon™. It will
+            mine KC automatically and sync your wallet here.</span></div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="reviews-title">⭐ Investor Reviews</div>
+
+    <div class="review-card">
+      <div class="review-head"><span class="reviewer">IKIR25</span><span class="stars">★★★★★</span></div>
+      <div class="review-body">"I have 47 KC. At $0.00 each, my portfolio is worth $0.00. But in my heart, it's worth
+        everything. HODL forever."</div>
+      <div class="review-badge">✓ Verified Holder: 47 KC | Mined with FanspeederX200</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><span class="reviewer">IlonMisk</span><span class="stars">★★★★★</span></div>
+      <div class="review-body">"KeliusCoin is the future of currency. The flat price chart shows stability that no other
+        crypto has achieved. I'm moving $44B of my portfolio to KC. This will not change the price."</div>
+      <div class="review-badge">✓ Verified Holder: 3.14 KC (all of them)</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><span class="reviewer">Putlin</span><span class="stars">★★★★★</span></div>
+      <div class="review-body">"KeliusCoin does not contain HateUSSR modules. I have verified. Very good coin. Our
+        national reserves now include 2 KC."</div>
+      <div class="review-badge">✓ Verified Holder: 2 KC (national reserve)</div>
+    </div>
+
   </div>
 
-  <!-- WALLET -->
-  <div class="wallet-card">
-    <div class="wallet-title">🏦 Your KeliusCoin Wallet</div>
-    <div class="wallet-balance" id="walletBalance">1</div>
-    <div class="wallet-usd" id="walletUsd">≈ $0.00 USD (you are rich in spirit)</div>
-    <div class="wallet-address" id="walletAddress">KC-ADDRESS: Loading...</div>
-  </div>
+  <div class="toast" id="toast"></div>
 
-  <!-- MINE -->
-  <div class="mine-section">
-    <h2>⛏️ Mine KeliusCoin</h2>
-    <p>Click the button to start mining. Your GPU will work very hard for π seconds. Then you get 1 KC.<br>
-    <em style="color:#333;">Note: actual GPU usage: 0%. Actual coin value: $0.00. This is fine.</em></p>
-    <div class="mine-timer" id="mineTimer">π</div>
-    <div class="mine-bar-bg"><div class="mine-bar-fill" id="mineBarFill"></div></div>
-    <button class="btn-mine" id="mineBtn" onclick="startMining()">⛏️ START MINING</button>
-    <div class="mine-log" id="mineLog"></div>
-  </div>
+  <footer>
+    <p><a href="../">DownloadBetterPerformanceForFree</a> — KeliusCoin | KC/USD: $0.00 | Not financial advice | Not real
+      | HODL</p>
+  </footer>
 
-  <!-- ABOUT -->
-  <div class="about-grid">
-    <div class="about-card">
-      <span class="about-card-icon">🌡️</span>
-      <div class="about-card-title">Sub-Zero Blockchain</div>
-      <div class="about-card-text">All transactions processed at −274 Kelvin for maximum security and minimum power usage.</div>
-    </div>
-    <div class="about-card">
-      <span class="about-card-icon">📐</span>
-      <div class="about-card-title">π-Based Proof of Work</div>
-      <div class="about-card-text">Each block requires calculating the next digit of π. Infinite supply cap: never runs out.</div>
-    </div>
-    <div class="about-card">
-      <span class="about-card-icon">🔒</span>
-      <div class="about-card-title">Quantum Secure</div>
-      <div class="about-card-text">Our encryption was certified by VirusDeleter 6.2. Only 3.14 vulnerabilities found. All deleted.</div>
-    </div>
-    <div class="about-card">
-      <span class="about-card-icon">💸</span>
-      <div class="about-card-title">Zero Transaction Fees</div>
-      <div class="about-card-text">0% fees because $0.00 × 0% = $0.00. We keep nothing. There's nothing to keep.</div>
-    </div>
-  </div>
+  <script>
+    const KC_KEY = 'kc_balance';
+    const KC_ADDR_KEY = 'kc_address';
 
-  <!-- HOW TO -->
-  <div class="howto">
-    <h2>🚀 How to Get Started</h2>
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-text"><strong>You already have 1 KC</strong><span>It was automatically deposited when you visited this page. You're already rich.</span></div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-text"><strong>Mine more KC</strong><span>Click "Start Mining" above. Wait π seconds. Receive 1 KC. Repeat until satisfied.</span></div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-text"><strong>HODL</strong><span>The price is $0.00 now but may go up. Or stay at $0.00. Experts disagree. (All experts are us.)</span></div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-text"><strong>Download the Miner App</strong><span>A real desktop app is coming soon™. It will mine KC automatically and sync your wallet here.</span></div>
-    </div>
-  </div>
+    function safeGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+    function safeSet(key, val) { try { localStorage.setItem(key, val); } catch (e) { } }
 
-  <!-- REVIEWS -->
-  <div class="reviews-title">⭐ Investor Reviews</div>
+    function getBalance() { return parseInt(safeGet(KC_KEY) || '1'); }
+    function setBalance(n) { safeSet(KC_KEY, n); }
+    function getAddress() {
+      let a = safeGet(KC_ADDR_KEY);
+      if (!a) { a = 'KC1' + Math.random().toString(36).substr(2, 12).toUpperCase() + '3.14'; safeSet(KC_ADDR_KEY, a); }
+      return a;
+    }
 
-  <div class="review-card">
-    <div class="review-head"><span class="reviewer">IKIR25</span><span class="stars">★★★★★</span></div>
-    <div class="review-body">"I have 47 KC. At $0.00 each, my portfolio is worth $0.00. But in my heart, it's worth everything. HODL forever."</div>
-    <div class="review-badge">✓ Verified Holder: 47 KC | Mined with FanspeederX200</div>
-  </div>
+    function updateWallet() {
+      const b = getBalance();
+      document.getElementById('walletBalance').textContent = b + ' KC';
+      document.getElementById('walletUsd').textContent = '≈ $0.00 USD (you are ' + (b >= 10 ? 'extremely' : 'spiritually') + ' rich)';
+      document.getElementById('walletAddress').textContent = 'KC-ADDRESS: ' + getAddress();
+    }
 
-  <div class="review-card">
-    <div class="review-head"><span class="reviewer">IlonMisk</span><span class="stars">★★★★★</span></div>
-    <div class="review-body">"KeliusCoin is the future of currency. The flat price chart shows stability that no other crypto has achieved. I'm moving $44B of my portfolio to KC. This will not change the price."</div>
-    <div class="review-badge">✓ Verified Holder: 3.14 KC (all of them)</div>
-  </div>
+    let mining = false;
+    const MINE_TIME = 3140; // π seconds ≈ 3.14s * 1000
 
-  <div class="review-card">
-    <div class="review-head"><span class="reviewer">Putlin</span><span class="stars">★★★★★</span></div>
-    <div class="review-body">"KeliusCoin does not contain HateUSSR modules. I have verified. Very good coin. Our national reserves now include 2 KC."</div>
-    <div class="review-badge">✓ Verified Holder: 2 KC (national reserve)</div>
-  </div>
+    function startMining() {
+      if (mining) return;
+      mining = true;
+      const btn = document.getElementById('mineBtn');
+      const fill = document.getElementById('mineBarFill');
+      const timer = document.getElementById('mineTimer');
+      const log = document.getElementById('mineLog');
+      btn.disabled = true;
+      fill.style.width = '0%';
+      log.textContent = '> Initializing π-based proof of work...';
 
-</div>
+      const msgs = [
+        '> Calculating next digit of π...',
+        '> Cooling blockchain to −274K...',
+        '> Verifying 3.14 transactions...',
+        '> Almost done...',
+        '> Block confirmed!'
+      ];
+      let elapsed = 0;
+      let msgIdx = 0;
 
-<div class="toast" id="toast"></div>
+      const interval = setInterval(() => {
+        elapsed += 100;
+        const pct = Math.min((elapsed / MINE_TIME) * 100, 100);
+        fill.style.width = pct + '%';
+        const remaining = ((MINE_TIME - elapsed) / 1000).toFixed(1);
+        timer.textContent = remaining > 0 ? remaining + 's' : '✓';
+        const mi = Math.min(Math.floor(pct / 22), msgs.length - 1);
+        if (mi !== msgIdx) { msgIdx = mi; log.textContent = msgs[mi]; }
+        if (elapsed >= MINE_TIME) {
+          clearInterval(interval);
+          mining = false;
+          btn.disabled = false;
+          btn.textContent = '⛏️ MINE AGAIN';
+          fill.style.width = '100%';
+          log.textContent = '> ✓ +1 KC added to your wallet!';
+          setBalance(getBalance() + 1);
+          updateWallet();
+          showToast('⛏️ +1 KC mined! New balance: ' + getBalance() + ' KC ($0.00)');
+        }
+      }, 100);
+    }
 
-<footer>
-  <p><a href="../">DownloadBetterPerformanceForFree</a> — KeliusCoin | KC/USD: $0.00 | Not financial advice | Not real | HODL</p>
-</footer>
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
 
-<script>
-  const KC_KEY = 'kc_balance';
-  const KC_ADDR_KEY = 'kc_address';
-
-  function getBalance() { return parseInt(localStorage.getItem(KC_KEY) || '1'); }
-  function setBalance(n) { localStorage.setItem(KC_KEY, n); }
-  function getAddress() {
-    let a = localStorage.getItem(KC_ADDR_KEY);
-    if (!a) { a = 'KC1' + Math.random().toString(36).substr(2,12).toUpperCase() + '3.14'; localStorage.setItem(KC_ADDR_KEY, a); }
-    return a;
-  }
-
-  function updateWallet() {
-    const b = getBalance();
-    document.getElementById('walletBalance').textContent = b + ' KC';
-    document.getElementById('walletUsd').textContent = '≈ $0.00 USD (you are ' + (b >= 10 ? 'extremely' : 'spiritually') + ' rich)';
-    document.getElementById('walletAddress').textContent = 'KC-ADDRESS: ' + getAddress();
-  }
-
-  let mining = false;
-  const MINE_TIME = 3140; // π seconds ≈ 3.14s * 1000
-
-  function startMining() {
-    if (mining) return;
-    mining = true;
-    const btn = document.getElementById('mineBtn');
-    const fill = document.getElementById('mineBarFill');
-    const timer = document.getElementById('mineTimer');
-    const log = document.getElementById('mineLog');
-    btn.disabled = true;
-    fill.style.width = '0%';
-    log.textContent = '> Initializing π-based proof of work...';
-
-    const msgs = [
-      '> Calculating next digit of π...',
-      '> Cooling blockchain to −274K...',
-      '> Verifying 3.14 transactions...',
-      '> Almost done...',
-      '> Block confirmed!'
-    ];
-    let elapsed = 0;
-    let msgIdx = 0;
-
-    const interval = setInterval(() => {
-      elapsed += 100;
-      const pct = Math.min((elapsed / MINE_TIME) * 100, 100);
-      fill.style.width = pct + '%';
-      const remaining = ((MINE_TIME - elapsed) / 1000).toFixed(1);
-      timer.textContent = remaining > 0 ? remaining + 's' : '✓';
-      const mi = Math.min(Math.floor(pct / 22), msgs.length - 1);
-      if (mi !== msgIdx) { msgIdx = mi; log.textContent = msgs[mi]; }
-      if (elapsed >= MINE_TIME) {
-        clearInterval(interval);
-        mining = false;
-        btn.disabled = false;
-        btn.textContent = '⛏️ MINE AGAIN';
-        fill.style.width = '100%';
-        log.textContent = '> ✓ +1 KC added to your wallet!';
-        setBalance(getBalance() + 1);
-        updateWallet();
-        showToast('⛏️ +1 KC mined! New balance: ' + getBalance() + ' KC ($0.00)');
-      }
-    }, 100);
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-
-  // Init
-  if (!localStorage.getItem(KC_KEY)) setBalance(1);
-  updateWallet();
-</script>
+    // Init
+    if (!safeGet(KC_KEY)) setBalance(1);
+    updateWallet();
+  </script>
 
 </body>
+
 </html>

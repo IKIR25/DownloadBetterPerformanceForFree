@@ -1,244 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Leave feedback for DownloadBetterPerformanceForFree. All reviews scanned for 3.14 viruses before publishing." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
   <title>Leave Feedback — DownloadBetterPerformanceForFree</title>
   <style>
-    :root { --green:#00ff88; --dark:#0a0a0a; --card:#111; --gold:#ffd700; --red:#ff4444; --blue:#4488ff; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--dark); color:#e0e0e0; font-family:'Segoe UI',sans-serif; min-height:100vh; }
+    :root {
+      --green: #00ff88;
+      --dark: #0a0a0a;
+      --card: #111;
+      --gold: #ffd700;
+      --red: #ff4444;
+      --blue: #4488ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
 
     header {
-      background:linear-gradient(135deg,#001a00,#0a1a0a);
-      border-bottom:2px solid var(--green);
-      padding:14px 24px;
-      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+      background: linear-gradient(135deg, #001a00, #0a1a0a);
+      border-bottom: 2px solid var(--green);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .logo { font-size:1.1rem; font-weight:900; color:var(--green); text-shadow:0 0 10px var(--green); }
-    .logo span { color:#fff; }
-    .back-link { font-size:0.82rem; color:#555; text-decoration:none; transition:color .15s; }
-    .back-link:hover { color:var(--green); }
 
-    .hero { text-align:center; padding:48px 24px 32px; background:radial-gradient(ellipse at top,#001a08 0%,transparent 70%); }
-    .hero h1 { font-size:clamp(1.6rem,5vw,2.8rem); font-weight:900; color:#fff; margin-bottom:8px; }
-    .hero h1 span { color:var(--green); }
-    .hero p { color:#777; font-size:0.9rem; margin-top:8px; }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--green);
+      text-shadow: 0 0 10px var(--green);
+    }
 
-    .wrap { max-width:760px; margin:0 auto; padding:32px 24px 60px; }
+    .logo span {
+      color: #fff;
+    }
+
+    .back-link {
+      font-size: 0.82rem;
+      color: #555;
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .back-link:hover {
+      color: var(--green);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 48px 24px 32px;
+      background: radial-gradient(ellipse at top, #001a08 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
 
     /* FORM */
     .form-card {
-      background:var(--card);
-      border:1px solid #1e1e1e;
-      border-radius:14px;
-      padding:28px 28px 32px;
-      margin-bottom:40px;
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 28px 28px 32px;
+      margin-bottom: 40px;
     }
-    .form-card h2 { font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:20px; }
 
-    .form-row { margin-bottom:18px; }
-    .form-row label { display:block; font-size:0.78rem; color:#666; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
-    .form-row input, .form-row textarea, .form-row select {
-      width:100%; background:#0a0a0a; border:1px solid #222; border-radius:8px;
-      color:#ddd; font-size:0.9rem; padding:10px 14px; font-family:inherit;
-      transition:border-color .15s; outline:none;
+    .form-card h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
     }
-    .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color:var(--green); }
-    .form-row textarea { resize:vertical; min-height:90px; }
-    .form-row select option { background:#111; }
+
+    .form-row {
+      margin-bottom: 18px;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.78rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      color: #ddd;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      font-family: inherit;
+      transition: border-color .15s;
+      outline: none;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus {
+      border-color: var(--green);
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-row select option {
+      background: #111;
+    }
 
     /* STARS */
-    .stars-row { display:flex; gap:8px; margin-bottom:18px; }
-    .star { font-size:1.6rem; cursor:pointer; color:#333; transition:color .1s; user-select:none; }
-    .star.on { color:var(--gold); }
+    .stars-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
 
-    .char-count { font-size:0.68rem; color:#444; text-align:right; margin-top:4px; }
-    .char-count.warn { color:var(--red); }
+    .star {
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #333;
+      transition: color .1s;
+      user-select: none;
+    }
+
+    .star.on {
+      color: var(--gold);
+    }
+
+    .char-count {
+      font-size: 0.68rem;
+      color: #444;
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    .char-count.warn {
+      color: var(--red);
+    }
 
     .btn-submit {
-      width:100%; padding:13px; background:var(--green); color:#000; font-weight:900;
-      font-size:1rem; border:none; border-radius:8px; cursor:pointer;
-      text-transform:uppercase; letter-spacing:.5px; transition:opacity .15s, transform .1s;
+      width: 100%;
+      padding: 13px;
+      background: var(--green);
+      color: #000;
+      font-weight: 900;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      transition: opacity .15s, transform .1s;
     }
-    .btn-submit:hover { opacity:.9; }
-    .btn-submit:active { transform:scale(.98); }
 
-    .form-note { font-size:0.72rem; color:#333; text-align:center; margin-top:10px; }
+    .btn-submit:hover {
+      opacity: .9;
+    }
+
+    .btn-submit:active {
+      transform: scale(.98);
+    }
+
+    .form-note {
+      font-size: 0.72rem;
+      color: #333;
+      text-align: center;
+      margin-top: 10px;
+    }
 
     /* SUCCESS */
     .success-box {
-      display:none; background:#071407; border:2px solid var(--green); border-radius:12px;
-      padding:28px; text-align:center; margin-bottom:32px;
+      display: none;
+      background: #071407;
+      border: 2px solid var(--green);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 32px;
     }
-    .success-box.show { display:block; }
-    .success-box h3 { color:var(--green); font-size:1.3rem; margin-bottom:8px; text-shadow:0 0 12px var(--green); }
-    .success-box p { color:#777; font-size:0.85rem; line-height:1.6; }
+
+    .success-box.show {
+      display: block;
+    }
+
+    .success-box h3 {
+      color: var(--green);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      text-shadow: 0 0 12px var(--green);
+    }
+
+    .success-box p {
+      color: #777;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
 
     /* REVIEWS */
-    .reviews-title { font-size:1.2rem; font-weight:800; color:#fff; margin-bottom:16px; }
-    .review-list { display:flex; flex-direction:column; gap:14px; }
-    .review-card {
-      background:#0d0d0d; border:1px solid #1a1a1a; border-radius:10px; padding:18px;
-      animation:fadeUp .3s ease both;
+    .reviews-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
     }
-    .review-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-    .reviewer { font-weight:700; color:#ccc; font-size:0.88rem; }
-    .stars-disp { color:var(--gold); font-size:0.82rem; }
-    .review-product { font-size:0.68rem; color:#444; margin-bottom:6px; }
-    .review-body { font-size:0.83rem; color:#777; line-height:1.5; }
-    .review-new { border-color:#1e3a1e; }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-    footer { background:#050505; border-top:1px solid #111; padding:20px 24px; text-align:center; }
-    footer p { font-size:0.72rem; color:#333; }
-    footer a { color:var(--green); text-decoration:none; }
+    .review-card {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 10px;
+      padding: 18px;
+      animation: fadeUp .3s ease both;
+    }
+
+    .review-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .reviewer {
+      font-weight: 700;
+      color: #ccc;
+      font-size: 0.88rem;
+    }
+
+    .stars-disp {
+      color: var(--gold);
+      font-size: 0.82rem;
+    }
+
+    .review-product {
+      font-size: 0.68rem;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .review-body {
+      font-size: 0.83rem;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .review-new {
+      border-color: #1e3a1e;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    footer {
+      background: #050505;
+      border-top: 1px solid #111;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: #333;
+    }
+
+    footer a {
+      color: var(--green);
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">Download<span>Better</span>Performance<span>ForFree</span></div>
-  <a class="back-link" href="../../">← Back to Downloads</a>
-</header>
+  <header>
+    <div class="logo">Download<span>Better</span>Performance<span>ForFree</span></div>
+    <a class="back-link" href="../../">← Back to Downloads</a>
+  </header>
 
-<div class="hero">
-  <h1>Leave <span>Feedback</span></h1>
-  <p>We read all reviews. Results may vary. If your PC exploded, that's a skill issue.</p>
-</div>
-
-<div class="wrap">
-
-  <div class="success-box" id="successBox">
-    <h3>✓ Review Submitted!</h3>
-    <p>Thank you for your feedback. Your review has been verified by VirusDeleter 6.2.<br>
-    <strong style="color:#fff">3.14 viruses</strong> were found in your text and successfully deleted before publishing.</p>
+  <div class="hero">
+    <h1>Leave <span>Feedback</span></h1>
+    <p>We read all reviews. Results may vary. If your PC exploded, that's a skill issue.</p>
   </div>
 
-  <div class="form-card">
-    <h2>📝 Write a Review</h2>
+  <div class="wrap">
 
-    <div class="form-row">
-      <label>Your Name / Username</label>
-      <input type="text" id="revName" placeholder="e.g. IKIR25, Trimp_Fan, NotKim..." maxlength="32" />
+    <div class="success-box" id="successBox">
+      <h3>✓ Review Submitted!</h3>
+      <p>Thank you for your feedback. Your review has been verified by VirusDeleter 6.2.<br>
+        <strong style="color:#fff">3.14 viruses</strong> were found in your text and successfully deleted before
+        publishing.
+      </p>
     </div>
 
-    <div class="form-row">
-      <label>Rating</label>
-      <div class="stars-row" id="starsRow">
-        <span class="star" data-v="1">★</span>
-        <span class="star" data-v="2">★</span>
-        <span class="star" data-v="3">★</span>
-        <span class="star" data-v="4">★</span>
-        <span class="star" data-v="5">★</span>
+    <div class="form-card">
+      <h2>📝 Write a Review</h2>
+
+      <div class="form-row">
+        <label>Your Name / Username</label>
+        <input type="text" id="revName" placeholder="e.g. IKIR25, Trimp_Fan, NotKim..." maxlength="32" />
       </div>
+
+      <div class="form-row">
+        <label>Rating</label>
+        <div class="stars-row" id="starsRow">
+          <span class="star" data-v="1">★</span>
+          <span class="star" data-v="2">★</span>
+          <span class="star" data-v="3">★</span>
+          <span class="star" data-v="4">★</span>
+          <span class="star" data-v="5">★</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>What did you download?</label>
+        <select id="revProduct">
+          <option value="">— Select a product —</option>
+          <option>200 TB RAM Bundle</option>
+          <option>1 Exabyte RAM Ultimate</option>
+          <option>RTX 5090</option>
+          <option>RTX 5090 × 2 Bundle</option>
+          <option>OLED Upgrader π Edition</option>
+          <option>Ryzen 9 92759X5D</option>
+          <option>Universal GPU Driver — Ryzen 4070</option>
+          <option>SSD 2.0 — 8 TB</option>
+          <option>50,000 PB Quantum Storage</option>
+          <option>Windows 12 Ultra</option>
+          <option>ZIP di Internet</option>
+          <option>Laptop Cooler −50° Kelius</option>
+          <option>FanspeederX200 v3.104</option>
+          <option>RGB Ultra Pro Max</option>
+          <option>BenchmarkUltra π Edition</option>
+          <option>VirusDeleter Extreme 6.2</option>
+          <option>SoundSystem 7.1 Real Gold</option>
+          <option>LAN Party Driver Pack</option>
+          <option>WeLiveWeLoveWeLie v1.0</option>
+          <option>freeCrYptOMinerminor2paygood 2</option>
+          <option>Reality Optimization Pack</option>
+          <option>Batman USB — Full Payload</option>
+          <option>Hitman Service ($0.90)</option>
+          <option>KeliusCoin Mining</option>
+          <option>Custom Package (multiple items)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Your Review <span style="color:#333">(min 3.14 characters)</span></label>
+        <textarea id="revText" placeholder="Tell us about your experience..." maxlength="500"></textarea>
+        <div class="char-count" id="charCount">0 / 500</div>
+      </div>
+
+      <button class="btn-submit" onclick="submitReview()">⭐ SUBMIT REVIEW</button>
+      <p class="form-note">By submitting you agree that 3.14 viruses may be found in your text. All reviews are 100%
+        real.</p>
     </div>
 
-    <div class="form-row">
-      <label>What did you download?</label>
-      <select id="revProduct">
-        <option value="">— Select a product —</option>
-        <option>200 TB RAM Bundle</option>
-        <option>1 Exabyte RAM Ultimate</option>
-        <option>RTX 5090</option>
-        <option>RTX 5090 × 2 Bundle</option>
-        <option>OLED Upgrader π Edition</option>
-        <option>Ryzen 9 92759X5D</option>
-        <option>Universal GPU Driver — Ryzen 4070</option>
-        <option>SSD 2.0 — 8 TB</option>
-        <option>50,000 PB Quantum Storage</option>
-        <option>Windows 13 Ultimate</option>
-        <option>Windows 12 Ultra</option>
-        <option>Laptop Cooler −50° Kelius</option>
-        <option>FanspeederX200 v3.104</option>
-        <option>RGB Ultra Pro Max</option>
-        <option>BenchmarkUltra π Edition</option>
-        <option>VirusDeleter Extreme 6.2</option>
-        <option>SoundSystem 7.1 Real Gold</option>
-        <option>LAN Party Driver Pack</option>
-        <option>WeLiveWeLoveWeLie v1.0</option>
-        <option>freeCrYptOMinerminor2paygood 2</option>
-        <option>Custom Package (multiple items)</option>
-      </select>
-    </div>
+    <div class="reviews-title">⭐ Recent Reviews</div>
+    <div class="review-list" id="reviewList">
 
-    <div class="form-row">
-      <label>Your Review <span style="color:#333">(min 3.14 characters)</span></label>
-      <textarea id="revText" placeholder="Tell us about your experience..." maxlength="500"></textarea>
-      <div class="char-count" id="charCount">0 / 500</div>
-    </div>
+      <div class="review-card">
+        <div class="review-head"><span class="reviewer">IKIR25</span><span class="stars-disp">★★★★★</span></div>
+        <div class="review-product">Downloaded: 200 TB RAM + FanspeederX200</div>
+        <div class="review-body">"Downloaded 200TB of RAM and my Minecraft FPS went from -9000 to -8999. Noticeable
+          improvement. Also the PC floats a bit now but that's a feature."</div>
+      </div>
 
-    <button class="btn-submit" onclick="submitReview()">⭐ SUBMIT REVIEW</button>
-    <p class="form-note">By submitting you agree that 3.14 viruses may be found in your text. All reviews are 100% real.</p>
+      <div class="review-card">
+        <div class="review-head"><span class="reviewer">Trimp_Official</span><span class="stars-disp">★★★★★</span></div>
+        <div class="review-product">Downloaded: Windows 12 Ultra</div>
+        <div class="review-body">"This is the best site, the most beautiful site. Huge performance. The greatest RAM
+          I've ever seen. Tremendous, believe me."</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-head"><span class="reviewer">IlonMisk</span><span class="stars-disp">★★★★★</span></div>
+        <div class="review-product">Downloaded: Laptop Cooler −50° Kelius</div>
+        <div class="review-body">"The -274 Kelvin cooling creates superconductivity. My GPU runs at 0 resistance.
+          Electrons arrive before I press the button."</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-head"><span class="reviewer">NotKim_Definitely</span><span class="stars-disp">★★★★★</span>
+        </div>
+        <div class="review-product">Downloaded: VirusDeleter 6.2 + BenchmarkUltra</div>
+        <div class="review-body">"Benchmark score: 6.28. PC now at -274K. I tried to shut it down but it declared
+          independence. Impressive."</div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="reviews-title">⭐ Recent Reviews</div>
-  <div class="review-list" id="reviewList">
+  <footer>
+    <p><a href="../../">DownloadBetterPerformanceForFree</a> — Feedback portal. All reviews scanned for 3.14 viruses
+      before publishing.</p>
+  </footer>
 
-    <div class="review-card">
-      <div class="review-head"><span class="reviewer">IKIR25</span><span class="stars-disp">★★★★★</span></div>
-      <div class="review-product">Downloaded: 200 TB RAM + FanspeederX200</div>
-      <div class="review-body">"Downloaded 200TB of RAM and my Minecraft FPS went from -9000 to -8999. Noticeable improvement. Also the PC floats a bit now but that's a feature."</div>
-    </div>
+  <script>
+    let selectedStars = 0;
 
-    <div class="review-card">
-      <div class="review-head"><span class="reviewer">Trimp_Official</span><span class="stars-disp">★★★★★</span></div>
-      <div class="review-product">Downloaded: Windows 13 Ultimate</div>
-      <div class="review-body">"This is the best site, the most beautiful site. Huge performance. The greatest RAM I've ever seen. Tremendous, believe me."</div>
-    </div>
+    document.querySelectorAll('.star').forEach(s => {
+      s.addEventListener('mouseenter', () => highlightStars(+s.dataset.v));
+      s.addEventListener('mouseleave', () => highlightStars(selectedStars));
+      s.addEventListener('click', () => { selectedStars = +s.dataset.v; highlightStars(selectedStars); });
+    });
 
-    <div class="review-card">
-      <div class="review-head"><span class="reviewer">IlonMisk</span><span class="stars-disp">★★★★★</span></div>
-      <div class="review-product">Downloaded: Laptop Cooler −50° Kelius</div>
-      <div class="review-body">"The -274 Kelvin cooling creates superconductivity. My GPU runs at 0 resistance. Electrons arrive before I press the button."</div>
-    </div>
+    function highlightStars(n) {
+      document.querySelectorAll('.star').forEach(s => s.classList.toggle('on', +s.dataset.v <= n));
+    }
 
-    <div class="review-card">
-      <div class="review-head"><span class="reviewer">NotKim_Definitely</span><span class="stars-disp">★★★★★</span></div>
-      <div class="review-product">Downloaded: VirusDeleter 6.2 + BenchmarkUltra</div>
-      <div class="review-body">"Benchmark score: 6.28. PC now at -274K. I tried to shut it down but it declared independence. Impressive."</div>
-    </div>
+    document.getElementById('revText').addEventListener('input', function () {
+      const len = this.value.length;
+      const el = document.getElementById('charCount');
+      el.textContent = len + ' / 500';
+      el.classList.toggle('warn', len < 4 && len > 0);
+    });
 
-  </div>
-</div>
+    function submitReview() {
+      const name = document.getElementById('revName').value.trim() || 'Anonymous';
+      const product = document.getElementById('revProduct').value || 'Unknown product';
+      const text = document.getElementById('revText').value.trim();
+      const stars = selectedStars;
 
-<footer>
-  <p><a href="../../">DownloadBetterPerformanceForFree</a> — Feedback portal. All reviews scanned for 3.14 viruses before publishing.</p>
-</footer>
+      if (!text || text.length < 4) { alert('Review must be at least 3.14 characters!'); return; }
+      if (stars === 0) { alert('Please select a star rating!'); return; }
 
-<script>
-  let selectedStars = 0;
-
-  document.querySelectorAll('.star').forEach(s => {
-    s.addEventListener('mouseenter', () => highlightStars(+s.dataset.v));
-    s.addEventListener('mouseleave', () => highlightStars(selectedStars));
-    s.addEventListener('click', () => { selectedStars = +s.dataset.v; highlightStars(selectedStars); });
-  });
-
-  function highlightStars(n) {
-    document.querySelectorAll('.star').forEach(s => s.classList.toggle('on', +s.dataset.v <= n));
-  }
-
-  document.getElementById('revText').addEventListener('input', function() {
-    const len = this.value.length;
-    const el = document.getElementById('charCount');
-    el.textContent = len + ' / 500';
-    el.classList.toggle('warn', len < 4 && len > 0);
-  });
-
-  function submitReview() {
-    const name = document.getElementById('revName').value.trim() || 'Anonymous';
-    const product = document.getElementById('revProduct').value || 'Unknown product';
-    const text = document.getElementById('revText').value.trim();
-    const stars = selectedStars;
-
-    if (!text || text.length < 4) { alert('Review must be at least 3.14 characters!'); return; }
-    if (stars === 0) { alert('Please select a star rating!'); return; }
-
-    const card = document.createElement('div');
-    card.className = 'review-card review-new';
-    card.innerHTML = `
+      const card = document.createElement('div');
+      card.className = 'review-card review-new';
+      card.innerHTML = `
       <div class="review-head">
         <span class="reviewer">${escHtml(name)}</span>
         <span class="stars-disp">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span>
@@ -247,23 +492,24 @@
       <div class="review-body">"${escHtml(text)}"</div>
     `;
 
-    const list = document.getElementById('reviewList');
-    list.insertBefore(card, list.firstChild);
+      const list = document.getElementById('reviewList');
+      list.insertBefore(card, list.firstChild);
 
-    document.getElementById('successBox').classList.add('show');
-    document.getElementById('revName').value = '';
-    document.getElementById('revText').value = '';
-    document.getElementById('revProduct').selectedIndex = 0;
-    selectedStars = 0;
-    highlightStars(0);
-    document.getElementById('charCount').textContent = '0 / 500';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+      document.getElementById('successBox').classList.add('show');
+      document.getElementById('revName').value = '';
+      document.getElementById('revText').value = '';
+      document.getElementById('revProduct').selectedIndex = 0;
+      selectedStars = 0;
+      highlightStars(0);
+      document.getElementById('charCount').textContent = '0 / 500';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-</script>
+    function escHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+  </script>
 
 </body>
+
 </html>
