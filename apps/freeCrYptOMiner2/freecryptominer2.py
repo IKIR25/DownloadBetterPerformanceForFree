@@ -1,4 +1,19 @@
-import sys, random, math
+import sys, random, math, json
+from pathlib import Path
+
+WALLET_FILE = Path.home() / ".freecryptominer2_wallet.json"
+
+def load_wallet():
+    try:
+        return json.loads(WALLET_FILE.read_text())
+    except Exception:
+        return {"total_kc": 0.0}
+
+def save_wallet(total_kc):
+    try:
+        WALLET_FILE.write_text(json.dumps({"total_kc": total_kc}))
+    except Exception:
+        pass
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QProgressBar, QFrame, QSizePolicy
@@ -87,7 +102,7 @@ class MinerApp(QMainWindow):
 
         self.mining = False
         self.tick = 0
-        self.total_kc = 0.0
+        self.total_kc = load_wallet()["total_kc"]
         self.site_kc  = 0.0
         self.hashrate  = 0.0
         self.gpu_pct   = 0
@@ -333,6 +348,7 @@ class MinerApp(QMainWindow):
         self.total_lbl.setText(
             f"Total mined: {self.total_kc:.6f} KC  —  KC price: $0.00  —  Portfolio value: $0.00"
         )
+        save_wallet(self.total_kc)
 
         # gpu ramps to ~95% and screams
         gpu_target = min(95, t * 2 + random.randint(-3, 3))
@@ -372,6 +388,11 @@ class MinerApp(QMainWindow):
         ]
         if t % 4 == 0:
             self.log_lbl.setText(random.choice(logs))
+
+
+    def closeEvent(self, event):
+        save_wallet(self.total_kc)
+        event.accept()
 
 
 if __name__ == "__main__":
