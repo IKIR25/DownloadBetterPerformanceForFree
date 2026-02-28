@@ -40,12 +40,6 @@ def is_admin() -> bool:
     try:    return bool(ctypes.windll.shell32.IsUserAnAdmin())
     except: return False
 
-def relaunch_as_admin():
-    ctypes.windll.shell32.ShellExecuteW(
-        None, "runas", sys.executable, " ".join(f'"{a}"' for a in sys.argv), None, 1
-    )
-    sys.exit()
-
 # ── Power plan helpers ────────────────────────────────────────────────────────
 def get_active_plan() -> str:
     try:
@@ -310,7 +304,8 @@ class FanspeederApp(QMainWindow):
         vbox.addLayout(btn_row)
 
         # Status
-        self.status_lbl = self._lbl("Power plan: Balanced  •  Admin: ✓", 9, GREY)
+        admin_str = "Admin: ✓" if is_admin() else "Admin: –"
+        self.status_lbl = self._lbl(f"Power plan: Balanced  •  {admin_str}", 9, GREY)
         vbox.addWidget(self.status_lbl)
 
         self.setCentralWidget(root)
@@ -364,7 +359,8 @@ class FanspeederApp(QMainWindow):
         plan_names = {PLAN_BALANCED: "Balanced", PLAN_HIGH: "High Performance",
                       PLAN_ULTIMATE: "Ultimate Performance"}
         pname = plan_names.get(cfg["plan"].lower(), cfg["plan"][:8])
-        self.status_lbl.setText(f"Power plan: {pname} {'✓' if ok else '✗'}  •  Admin: ✓")
+        admin_str = "Admin: ✓" if is_admin() else "Admin: –"
+        self.status_lbl.setText(f"Power plan: {pname} {'✓' if ok else '✗'}  •  {admin_str}")
 
         # Acer WMI
         acer_set_turbo(cfg["acer"])
@@ -428,21 +424,6 @@ class FanspeederApp(QMainWindow):
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 def main():
-    if not is_admin():
-        app = QApplication(sys.argv)
-        w = QMainWindow()
-        w.setWindowTitle("FanspeederX200"); w.resize(400, 120)
-        c = QWidget(); v = QVBoxLayout(c)
-        l = QLabel("Requesting Administrator privileges…")
-        l.setAlignment(Qt.AlignCenter)
-        l.setStyleSheet(f"color: {WHITE}; font-size: 13px;")
-        v.addWidget(l)
-        w.setCentralWidget(c)
-        w.setStyleSheet(f"QWidget {{ background: {BG}; }}")
-        w.show()
-        QTimer.singleShot(1200, relaunch_as_admin)
-        sys.exit(app.exec())
-
     original = get_active_plan()
     app = QApplication(sys.argv)
     win = FanspeederApp(original)
