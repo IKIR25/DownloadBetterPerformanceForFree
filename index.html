@@ -681,7 +681,7 @@
 
     nav a:hover { color: var(--green); }
 
-    /* WINDOWS 13 SPECIAL */
+    /* WINDOWS 12 ULTRA SPECIAL */
     .featured-card {
       background: linear-gradient(135deg, #0a0a1a, #0a1a0a);
       border: 2px solid var(--gold);
@@ -853,7 +853,7 @@
   <div class="ticker">
     <span>🟢 IKIR25 just downloaded <span class="t-green">200 TB RAM</span></span>
     <span>🟢 Anonymous just downloaded <span class="t-green">RTX 5090 x2</span></span>
-    <span>🟢 Trimp just downloaded <span class="t-green">Windows 13 Gold Edition</span></span>
+    <span>🟢 Trimp just downloaded <span class="t-green">Windows 12 Ultra</span></span>
     <span>🟢 LAN_PARTY just downloaded <span class="t-green">Ryzen 9 92759X5D</span></span>
     <span>🟢 IslandMan_KIM deleted 3.14 viruses</span>
     <span>🟢 Anonymous just downloaded <span class="t-green">50000 PB SSD</span></span>
@@ -861,7 +861,7 @@
     <!-- DUPLICATE for loop -->
     <span>🟢 IKIR25 just downloaded <span class="t-green">200 TB RAM</span></span>
     <span>🟢 Anonymous just downloaded <span class="t-green">RTX 5090 x2</span></span>
-    <span>🟢 Trimp just downloaded <span class="t-green">Windows 13 Gold Edition</span></span>
+    <span>🟢 Trimp just downloaded <span class="t-green">Windows 12 Ultra</span></span>
     <span>🟢 LAN_PARTY just downloaded <span class="t-green">Ryzen 9 92759X5D</span></span>
     <span>🟢 IslandMan_KIM deleted 3.14 viruses</span>
     <span>🟢 Anonymous just downloaded <span class="t-green">50000 PB SSD</span></span>
@@ -1139,7 +1139,7 @@
   <div class="featured-card">
     <span class="featured-icon">🪟</span>
     <div class="featured-content">
-      <div class="featured-title">Windows 13 Ultimate Edition</div>
+      <div class="featured-title">Windows 12 Ultra</div>
       <div class="featured-sub">
         The most advanced OS ever built. Powered by Pi-based kernel architecture.
         Includes built-in VirusDeleter 6.2, KeliusCoin Miner Blocker, and full support for 200 TB RAM.
@@ -1151,27 +1151,11 @@
         <span class="tag-small tag-red">Not on MS Store</span>
       </div>
       <div class="featured-price">FREE</div>
-      <button class="btn-featured" onclick="startDownload(this, 'Windows 13 Ultimate', '9.14MB')">⬇ DOWNLOAD WINDOWS 13</button>
+      <button class="btn-featured" onclick="startDownload(this, 'Windows 12 Ultra', '9.14MB', 'apps/Windows12Ultra/Windows12Ultra.exe')">⬇ DOWNLOAD WINDOWS 12 ULTRA</button>
     </div>
   </div>
 
   <div class="grid">
-    <div class="card">
-      <span class="card-icon">🪟</span>
-      <div class="card-name">Windows 12 Ultra</div>
-      <div class="card-spec">Can install itself on sand • Turns islands into operating systems • All drivers included</div>
-      <div class="card-price">FREE</div>
-      <div class="card-orig">$119.99</div>
-      <div class="card-tags">
-        <span class="tag-small tag-blue">Island Tested</span>
-        <span class="tag-small tag-red">Reality OS</span>
-      </div>
-      <button class="btn-download" onclick="startDownload(this, 'Windows 12 Ultra', '8.00MB')">⬇ DOWNLOAD</button>
-      <div class="progress-wrap">
-        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
-        <div class="progress-text"><span class="status">Preparing...</span><span class="speed">5 PB/s</span></div>
-      </div>
-    </div>
     <div class="card">
       <span class="card-icon">🌐</span>
       <div class="card-name">ZIP di Internet</div>
@@ -1572,8 +1556,8 @@
         <span class="reviewer">Trimp_Official</span>
         <span class="stars">★★★★★</span>
       </div>
-      <p class="review-text">"This is the best site, the most beautiful site. Huge performance. The greatest RAM I've ever seen. I downloaded Windows 13 Gold. Tremendous site, believe me."</p>
-      <div class="review-badge">✓ Verified Download: Windows 13 Ultimate + Universal Driver</div>
+      <p class="review-text">"This is the best site, the most beautiful site. Huge performance. The greatest RAM I've ever seen. I downloaded Windows 12 Ultra. Tremendous site, believe me."</p>
+      <div class="review-badge">✓ Verified Download: Windows 12 Ultra + Universal Driver</div>
     </div>
 
     <div class="review-card">
@@ -1713,7 +1697,7 @@
     } else {
       // featured card
       setTimeout(() => {
-        btn.textContent = '✓ WINDOWS 13 INSTALLED';
+        btn.textContent = '✓ WINDOWS 12 ULTRA INSTALLED';
         btn.style.background = '#1a1400';
         btn.style.color = 'var(--gold)';
         showToast('✓ ' + name + ' installed! (' + size + ')');
