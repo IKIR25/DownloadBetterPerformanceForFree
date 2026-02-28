@@ -1,0 +1,608 @@
+<Window x:Class="DBPFF_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="DBPFF Hub"
+        Height="800" Width="1200"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#0a0a0a">
+
+    <Window.Resources>
+        <Style x:Key="NavLink" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#557755"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="3" Margin="4,0">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#0d1f0d"/>
+                                <Setter Property="Foreground" Value="#00ff88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnLaunch" TargetType="Button">
+            <Setter Property="Background" Value="#0d3320"/>
+            <Setter Property="Foreground" Value="#00dd66"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="18,8"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#0f4428"/>
+                                <Setter Property="Foreground" Value="#00ff88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnKill" TargetType="Button">
+            <Setter Property="Background" Value="#2a0d0d"/>
+            <Setter Property="Foreground" Value="#cc4444"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="18,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#3a1111"/>
+                                <Setter Property="Foreground" Value="#ff5555"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnAction" TargetType="Button">
+            <Setter Property="Background" Value="#00ff88"/>
+            <Setter Property="Foreground" Value="#0a0a0a"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="18,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#33ffaa"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ToggleBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#00ff88"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#0d1f0d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="sidebarCol" Width="36"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ═══ SIDEBAR ═══ -->
+        <Border Grid.Column="0" BorderBrush="#1a2e1a" BorderThickness="0,0,1,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0.3,1">
+                    <GradientStop Color="#020a02" Offset="0"/>
+                    <GradientStop Color="#071207" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Button x:Name="btnToggle" Content="☰" Click="ToggleSidebar_Click"
+                        Style="{StaticResource ToggleBtn}"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,6,0,0"/>
+
+                <ScrollViewer x:Name="sidebarContent" Visibility="Collapsed"
+                              VerticalScrollBarVisibility="Auto" Margin="0,34,0,0">
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="NAVIGATE" FontSize="8" Foreground="#2a4a2a" FontWeight="Bold" Margin="10,4,0,3"/>
+                        <Button Content="Home"            Tag="home"     Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="RAM"             Tag="ram"      Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="GPU"             Tag="gpu"      Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="CPU"             Tag="cpu"      Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Storage"         Tag="storage"  Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="OS"              Tag="os"       Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Cooling"         Tag="cooling"  Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Software"        Tag="software" Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Other Services"  Tag="other"    Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="FAQ"             Tag="faq"      Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Reviews"         Tag="reviews"  Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="About"           Tag="about"    Click="NavSito_Click" Style="{StaticResource NavLink}"/>
+
+                        <Border Height="1" Background="#1a2e1a" Margin="8,8,8,6"/>
+                        <TextBlock Text="APPS" FontSize="8" Foreground="#2a4a2a" FontWeight="Bold" Margin="10,0,0,4"/>
+
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#1a9aff" BorderThickness="2,0,0,0">
+                            <Button Content="Windows 12 Ultra" Tag="win12" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#5599cc"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#ffaa00" BorderThickness="2,0,0,0">
+                            <Button Content="freeCrYptOMiner 2" Tag="miner" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#aa8833"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#ffd700" BorderThickness="2,0,0,0">
+                            <Button Content="KeliusCoin Wallet" Tag="kc" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#aa9922"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#ff8844" BorderThickness="2,0,0,0">
+                            <Button Content="BenchmarkUltra" Tag="bench" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#aa6633"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#ff4444" BorderThickness="2,0,0,0">
+                            <Button Content="VirusDeleter" Tag="virus" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#aa4444"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#aa44ff" BorderThickness="2,0,0,0">
+                            <Button Content="RGBUltimate" Tag="rgb" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#8844aa"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#00ff88" BorderThickness="2,0,0,0">
+                            <Button Content="ZIP di Internet" Tag="zip" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#44aa66"/>
+                        </Border>
+
+                        <Border Height="1" Background="#1a2e1a" Margin="8,8,8,6"/>
+                        <TextBlock Text="HARDWARE" FontSize="8" Foreground="#2a4a2a" FontWeight="Bold" Margin="10,0,0,4"/>
+
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#00aaff" BorderThickness="2,0,0,0">
+                            <Button Content="GPU" Tag="gpu" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#3366aa"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#ff5533" BorderThickness="2,0,0,0">
+                            <Button Content="CPU" Tag="cpu" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#aa5533"/>
+                        </Border>
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#aa44ff" BorderThickness="2,0,0,0">
+                            <Button Content="Storage" Tag="storage" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#884499"/>
+                        </Border>
+
+                        <Border Height="1" Background="#1a2e1a" Margin="8,8,8,6"/>
+                        <TextBlock Text="COOLING" FontSize="8" Foreground="#2a4a2a" FontWeight="Bold" Margin="10,0,0,4"/>
+
+                        <Border Margin="4,1" CornerRadius="0,3,3,0" BorderBrush="#00ccff" BorderThickness="2,0,0,0">
+                            <Button Content="FanspeederX200" Tag="fan" Click="NavApp_Click" Style="{StaticResource NavLink}" Foreground="#3399aa"/>
+                        </Border>
+
+                        <Border Height="1" Background="#1a2e1a" Margin="8,8,8,6"/>
+                        <TextBlock Text="TOOLS" FontSize="8" Foreground="#2a4a2a" FontWeight="Bold" Margin="10,0,0,3"/>
+                        <Button Content="Log"      Tag="log"      Click="NavApp_Click" Style="{StaticResource NavLink}"/>
+                        <Button Content="Settings"  Tag="settings" Click="NavApp_Click" Style="{StaticResource NavLink}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- ═══ MAIN CONTENT ═══ -->
+        <Grid Grid.Column="1">
+            <wv2:WebView2 x:Name="webView" Visibility="Visible"/>
+
+            <!-- ══ WINDOWS 12 ULTRA ══ -->
+            <ScrollViewer x:Name="panelWin12" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="Windows 12 Ultra" FontSize="26" FontWeight="Bold" Foreground="#1a9aff"/>
+                    <TextBlock Text="π Kernel Edition" FontSize="12" Foreground="#4466aa" Margin="0,3,0,20"/>
+
+                    <Border Background="#0a1525" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3355" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#1a9aff" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="win12" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="win12" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a1525" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3355" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Installation Status" FontSize="14" FontWeight="Bold" Foreground="#1a9aff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="win12Status" Text="Not installed" FontSize="20" FontWeight="Bold" Foreground="#6a88a8"/>
+                            <TextBlock x:Name="win12Date" Text="" FontSize="11" Foreground="#4466aa" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a1525" CornerRadius="6" Padding="18" BorderBrush="#1a3355" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="System Specs" FontSize="14" FontWeight="Bold" Foreground="#1a9aff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="win12Specs" FontSize="12" Foreground="#6a88a8" LineHeight="22"
+                                       Text="Run Windows 12 Ultra to install and see specs"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ FREECRYPTOMINER 2 ══ -->
+            <ScrollViewer x:Name="panelMiner" Visibility="Collapsed" Background="#080600">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="freeCrYptOMiner 2" FontSize="26" FontWeight="Bold" Foreground="#ffaa00"/>
+                    <TextBlock Text="PayGood™ Technology" FontSize="12" Foreground="#806600" Margin="0,3,0,20"/>
+
+                    <Border Background="#141004" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2e2208" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#ffaa00" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="miner" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="miner" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#141004" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2e2208" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Mining Balance" FontSize="14" FontWeight="Bold" Foreground="#ffaa00" Margin="0,0,0,10"/>
+                            <TextBlock Text="Your Balance (1%)" FontSize="11" Foreground="#806600"/>
+                            <TextBlock x:Name="minerUserKC" Text="—" FontSize="24" FontWeight="Bold" Foreground="#ffaa00" Margin="0,4,0,10"/>
+                            <TextBlock Text="Sito Fidato (99%)" FontSize="11" Foreground="#806600"/>
+                            <TextBlock x:Name="minerSitoKC" Text="—" FontSize="24" FontWeight="Bold" Foreground="#00ff88" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ KELIUSCOIN WALLET ══ -->
+            <ScrollViewer x:Name="panelKC" Visibility="Collapsed" Background="#0a0800">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="KeliusCoin Wallet" FontSize="26" FontWeight="Bold" Foreground="#ffd700"/>
+                    <TextBlock Text="Market Cap: $0.00 — Value: $0.00/KC" FontSize="12" Foreground="#998800" Margin="0,3,0,20"/>
+
+                    <Border Background="#151104" CornerRadius="6" Padding="20" Margin="0,0,0,12" BorderBrush="#332e08" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Your Balance (1%)" FontSize="13" Foreground="#998800"/>
+                            <TextBlock x:Name="kcBalanceText" Text="0.000000 KC" FontSize="32" FontWeight="Bold" Foreground="#ffd700" Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#151104" CornerRadius="6" Padding="20" Margin="0,0,0,12" BorderBrush="#332e08" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Sito Fidato Balance (99%)" FontSize="13" Foreground="#998800"/>
+                            <TextBlock x:Name="kcSitoText" Text="0.000000 KC" FontSize="32" FontWeight="Bold" Foreground="#ffaa00" Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Refresh Balance" Click="RefreshKC_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"
+                            Background="#ffd700" Foreground="#0a0800"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ BENCHMARKULTRA ══ -->
+            <ScrollViewer x:Name="panelBench" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="BenchmarkUltra" FontSize="26" FontWeight="Bold" Foreground="#00ff88"/>
+                    <TextBlock Text="π Edition — π-algorithm scoring" FontSize="12" Foreground="#558855" Margin="0,3,0,20"/>
+
+                    <Border Background="#0a150a" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="bench" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="bench" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a150a" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Last Score" FontSize="14" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="benchScore" Text="—" FontSize="36" FontWeight="Bold" Foreground="#ffd700"/>
+                            <TextBlock x:Name="benchInfo" Text="No benchmarks yet — run BenchmarkUltra" FontSize="11" Foreground="#558855" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a150a" CornerRadius="6" Padding="18" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="History" FontSize="14" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="benchHistory" Text="No history yet" FontSize="12" Foreground="#558855"
+                                       FontFamily="Consolas" TextWrapping="Wrap" LineHeight="20"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ VIRUSDELETER ══ -->
+            <ScrollViewer x:Name="panelVirus" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="VirusDeleter" FontSize="26" FontWeight="Bold" Foreground="#ff4444"/>
+                    <TextBlock Text="Security Extreme 6.2" FontSize="12" Foreground="#aa4444" Margin="0,3,0,20"/>
+
+                    <Border Background="#150a0a" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#3a1e1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#ff4444" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="virus" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="virus" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#150a0a" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#3a1e1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Protection Status" FontSize="14" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="virusStatus" Text="PROTECTED" FontSize="24" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock x:Name="virusLastScan" Text="No scans yet — run VirusDeleter" FontSize="11" Foreground="#aa6666" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#150a0a" CornerRadius="6" Padding="18" BorderBrush="#3a1e1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Scan History" FontSize="14" FontWeight="Bold" Foreground="#ff4444" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="virusHistory" Text="No scans yet" FontSize="12" Foreground="#aa6666"
+                                       FontFamily="Consolas" TextWrapping="Wrap" LineHeight="20"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ RGBULTIMATE ══ -->
+            <ScrollViewer x:Name="panelRgb" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="RGBUltimate" FontSize="26" FontWeight="Bold" Foreground="#aa44ff"/>
+                    <TextBlock Text="Ultra Pro Max — RGB for your soul" FontSize="12" Foreground="#664499" Margin="0,3,0,20"/>
+
+                    <Border Background="#0f0a18" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2a1e3a" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#aa44ff" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="rgb" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="rgb" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                            <TextBlock Text="WARNING: Temporary blindness on startup" FontSize="11" Foreground="#ff6600" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0f0a18" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2a1e3a" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Current Settings" FontSize="14" FontWeight="Bold" Foreground="#aa44ff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="rgbInfo" Text="Default settings (no saves yet)" FontSize="12" Foreground="#7744aa" LineHeight="22"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0f0a18" CornerRadius="6" Padding="18" BorderBrush="#2a1e3a" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Devices Controlled" FontSize="14" FontWeight="Bold" Foreground="#aa44ff" Margin="0,0,0,8"/>
+                            <TextBlock Foreground="#7744aa" FontSize="12" TextWrapping="Wrap"
+                                       Text="CPU Cooler, RAM, GPU, Keyboard, Mouse, Wi-Fi, Chair, Room Lighting, PSU, Soul"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ ZIP DI INTERNET ══ -->
+            <ScrollViewer x:Name="panelZip" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="ZIP di Internet" FontSize="26" FontWeight="Bold" Foreground="#00ff88"/>
+                    <TextBlock Text="The entire internet, compressed" FontSize="12" Foreground="#558855" Margin="0,3,0,20"/>
+
+                    <Border Background="#041208" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="File: ZIPdInternet.zip" FontSize="13" Foreground="#00ff88"/>
+                            <TextBlock Text="Size: 13.6 MB" FontSize="12" Foreground="#558855" Margin="0,4,0,0"/>
+                            <TextBlock Text="Compression ratio: ∞:1" FontSize="12" Foreground="#558855" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Open Folder" Tag="zip" Click="OpenFolder_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ GPU ══ -->
+            <ScrollViewer x:Name="panelGPU" Visibility="Collapsed" Background="#080c12">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="GPU" FontSize="26" FontWeight="Bold" Foreground="#00aaff"/>
+                    <TextBlock Text="NVIDIA GeForce Series" FontSize="12" Foreground="#335577" Margin="0,3,0,20"/>
+
+                    <Border Background="#0a1525" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3355" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Installed GPU" FontSize="14" FontWeight="Bold" Foreground="#00aaff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="gpuStatus" Text="No GPU downloaded yet" FontSize="20" FontWeight="Bold" Foreground="#4477aa"/>
+                            <TextBlock x:Name="gpuSpec" Text="" FontSize="11" Foreground="#335577" Margin="0,4,0,0"/>
+                            <TextBlock x:Name="gpuDate" Text="" FontSize="11" Foreground="#335577" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a1525" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3355" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Download" FontSize="14" FontWeight="Bold" Foreground="#00aaff" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button Content="Install RTX 5090" Tag="gpu1" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Install 2× RTX 5090" Tag="gpu2" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Refresh Status" Click="RefreshGPU_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"
+                            Background="#00aaff" Foreground="#080c12"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ CPU ══ -->
+            <ScrollViewer x:Name="panelCPU" Visibility="Collapsed" Background="#120a08">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="CPU" FontSize="26" FontWeight="Bold" Foreground="#ff5533"/>
+                    <TextBlock Text="AMD Ryzen Series" FontSize="12" Foreground="#774433" Margin="0,3,0,20"/>
+
+                    <Border Background="#1e0e08" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#3a1a10" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Installed CPU" FontSize="14" FontWeight="Bold" Foreground="#ff5533" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="cpuStatus" Text="No CPU downloaded yet" FontSize="20" FontWeight="Bold" Foreground="#aa5533"/>
+                            <TextBlock x:Name="cpuSpec" Text="" FontSize="11" Foreground="#774433" Margin="0,4,0,0"/>
+                            <TextBlock x:Name="cpuDate" Text="" FontSize="11" Foreground="#774433" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#1e0e08" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#3a1a10" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Download" FontSize="14" FontWeight="Bold" Foreground="#ff5533" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Install Ryzen 9 92759X5D" Tag="cpu1" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Refresh Status" Click="RefreshCPU_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"
+                            Background="#ff5533" Foreground="#0a0808"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ STORAGE ══ -->
+            <ScrollViewer x:Name="panelStorage" Visibility="Collapsed" Background="#0b080f">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="Storage" FontSize="26" FontWeight="Bold" Foreground="#aa44ff"/>
+                    <TextBlock Text="NVMe / Quantum Series" FontSize="12" Foreground="#553388" Margin="0,3,0,20"/>
+
+                    <Border Background="#150e20" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2a1a3a" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Installed Storage" FontSize="14" FontWeight="Bold" Foreground="#aa44ff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="storageStatus" Text="No storage downloaded yet" FontSize="20" FontWeight="Bold" Foreground="#7744aa"/>
+                            <TextBlock x:Name="storageSpec" Text="" FontSize="11" Foreground="#553388" Margin="0,4,0,0"/>
+                            <TextBlock x:Name="storageDate" Text="" FontSize="11" Foreground="#553388" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#150e20" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#2a1a3a" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Download" FontSize="14" FontWeight="Bold" Foreground="#aa44ff" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button Content="Install 8 TB SSD 2.0" Tag="ssd1" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Install 50,000 PB Storage" Tag="ssd2" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Refresh Status" Click="RefreshStorage_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"
+                            Background="#aa44ff" Foreground="#0b080f"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ FANSPEEDER X200 ══ -->
+            <ScrollViewer x:Name="panelFan" Visibility="Collapsed" Background="#080f12">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="FanspeederX200" FontSize="26" FontWeight="Bold" Foreground="#00ccff"/>
+                    <TextBlock Text="3.104 — Levitation Risk Edition" FontSize="12" Foreground="#336688" Margin="0,3,0,20"/>
+
+                    <Border Background="#0a1820" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3344" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Controls" FontSize="14" FontWeight="Bold" Foreground="#00ccff" Margin="0,0,0,10"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Launch" Tag="fan" Click="LaunchApp_Click" Style="{StaticResource BtnLaunch}"/>
+                                <Button Content="Kill"   Tag="fan" Click="KillApp_Click"   Style="{StaticResource BtnKill}"/>
+                            </StackPanel>
+                            <TextBlock Text="⚠ Requires Administrator privileges" FontSize="11" Foreground="#ff8800" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0a1820" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1a3344" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Current Fan Mode" FontSize="14" FontWeight="Bold" Foreground="#00ccff" Margin="0,0,0,8"/>
+                            <TextBlock x:Name="fanMode" Text="No mode set" FontSize="24" FontWeight="Bold" Foreground="#4499aa"/>
+                            <TextBlock x:Name="fanDate" Text="" FontSize="11" Foreground="#336688" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Refresh Status" Click="RefreshFan_Click"
+                            Style="{StaticResource BtnAction}" HorizontalAlignment="Left"
+                            Background="#00ccff" Foreground="#080f12"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ LOG ══ -->
+            <ScrollViewer x:Name="panelLog" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="900">
+                    <TextBlock Text="Log" FontSize="22" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,20"/>
+                    <Border Background="#111111" CornerRadius="6" Padding="12" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <TextBlock x:Name="logText" Text="No logs yet." FontSize="12"
+                                   Foreground="#77aa77" FontFamily="Consolas" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ══ SETTINGS ══ -->
+            <ScrollViewer x:Name="panelSettings" Visibility="Collapsed" Background="#0a0a0a">
+                <StackPanel Margin="30" MaxWidth="700">
+                    <TextBlock Text="Settings" FontSize="22" FontWeight="Bold" Foreground="#00ff88" Margin="0,0,0,20"/>
+
+                    <Border Background="#111111" CornerRadius="6" Padding="18" Margin="0,0,0,12" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Downloaded RAM" FontSize="14" FontWeight="Bold" Foreground="#e0e0e0" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="settingsRamInfo" Text="No RAM downloaded yet" FontSize="13" Foreground="#557755" LineHeight="22"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#111111" CornerRadius="6" Padding="18" BorderBrush="#1e3a1e" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Fake RAM in Task Manager" FontSize="14" FontWeight="Bold" Foreground="#e0e0e0"/>
+                            <TextBlock Text="Override Windows RAM display with your highest downloaded RAM" FontSize="11" Foreground="#558855" Margin="0,3,0,8"/>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="chkFakeRam" Foreground="#e0e0e0" VerticalAlignment="Center"/>
+                                <TextBlock Text=" Enable override" Foreground="#e0e0e0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

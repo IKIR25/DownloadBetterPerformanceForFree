@@ -299,12 +299,29 @@ class DonePage(QWidget):
         sl.setContentsMargins(32, 24, 32, 24)
         sl.setSpacing(10)
 
+        ram_tb = random.randint(128, 200)
+        drivers = random.randint(4_100_000, 4_200_000)
+        viruses = random.randint(840, 999)
+
+        # Save installation status
+        try:
+            sp = Path.home() / ".windows12ultra_status.json"
+            sp.write_text(json.dumps({
+                "installed": True,
+                "date": time.strftime("%Y-%m-%d %H:%M"),
+                "ram_tb": ram_tb,
+                "drivers": drivers,
+                "viruses_deleted": viruses,
+            }))
+        except Exception:
+            pass
+
         stats = [
             ("Kernel", "π  (3.14159265...)"),
             ("Boot time", "0.00000001 s"),
-            ("RAM configured", f"{random.randint(128, 200)} TB"),
-            ("Drivers installed", f"{random.randint(4_100_000, 4_200_000):,}"),
-            ("Viruses pre-deleted", f"{random.randint(840, 999)}"),
+            ("RAM configured", f"{ram_tb} TB"),
+            ("Drivers installed", f"{drivers:,}"),
+            ("Viruses pre-deleted", f"{viruses}"),
             ("Score", "π  — π Institute Certified"),
             ("Reality", "Activated"),
         ]
