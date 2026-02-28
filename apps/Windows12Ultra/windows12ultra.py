@@ -9,16 +9,16 @@ from PySide6.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QFont, QColor, QPalette
 
 # ── palette ───────────────────────────────────────────────────────────────────
-BLUE   = "#0078d4"
-DARK   = "#001a2e"
-BLACK  = "#000814"
-PANEL  = "#0a0f1a"
-BORDER = "#1a2840"
-WHITE  = "#e8f4ff"
-GREY   = "#4a6080"
+BLUE   = "#1a9aff"
+DARK   = "#0a2a44"
+BLACK  = "#0a1020"
+PANEL  = "#111c2e"
+BORDER = "#253a58"
+WHITE  = "#eef6ff"
+GREY   = "#6a88a8"
 GOLD   = "#ffd700"
-GREEN  = "#00ff88"
-RED    = "#ff4444"
+GREEN  = "#00ff99"
+RED    = "#ff5555"
 
 SS = f"""
 QWidget {{ background: {BLACK}; color: {WHITE}; font-family: 'Segoe UI', sans-serif; }}
@@ -451,7 +451,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Windows 12 Ultra Installer")
-        self.setFixedSize(700, 700)
+        self.setMinimumSize(700, 700)
+        self.resize(700, 700)
         self.setStyleSheet(SS)
 
         self.stack = QStackedWidget()

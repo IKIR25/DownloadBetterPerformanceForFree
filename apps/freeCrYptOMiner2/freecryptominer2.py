@@ -22,16 +22,16 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont, QColor, QPalette
 
 # ── palette ───────────────────────────────────────────────────────────────────
-BLACK  = "#000000"
-PANEL  = "#0a0800"
-BORDER = "#2a1800"
-WHITE  = "#ffe8aa"
-GOLD   = "#ffaa00"
-DGOLD  = "#cc7700"
-GREY   = "#665500"
-GREEN  = "#00ff88"
-RED    = "#ff4444"
-ORANGE = "#ff8800"
+BLACK  = "#0e0c08"
+PANEL  = "#1a1408"
+BORDER = "#3d2e10"
+WHITE  = "#fff3cc"
+GOLD   = "#ffbb22"
+DGOLD  = "#dd9900"
+GREY   = "#998855"
+GREEN  = "#44ffaa"
+RED    = "#ff6666"
+ORANGE = "#ffaa33"
 
 SS = f"""
 QWidget {{ background:{BLACK}; color:{WHITE}; font-family:'Segoe UI',sans-serif; }}
@@ -97,7 +97,8 @@ class MinerApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("freeCrYptOMinerminor2paygood 2 — PayGood™ Edition")
-        self.setFixedSize(680, 720)
+        self.setMinimumSize(680, 720)
+        self.resize(680, 720)
         self.setStyleSheet(SS)
 
         self.mining = False
